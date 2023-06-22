@@ -19,6 +19,7 @@ public class MainActivity extends Activity {
         // アクティビティを有効化
         getPackageManager().setComponentEnabledSetting(new ComponentName(this, HideNavigationBar.class), 1, 1);
         getPackageManager().setComponentEnabledSetting(new ComponentName(this, ShowNavigationBar.class), 1, 1);
+        getPackageManager().setComponentEnabledSetting(new ComponentName(this, Reboot.class), 1, 1);
         msg = "アクティビティを有効にしました";
         // 文字表示
         textView.setText(msg);
