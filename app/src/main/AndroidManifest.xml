@@ -3,7 +3,7 @@
     package="me.s1204.benesse.dcha.tester">
 
     <uses-sdk android:maxSdkVersion="28" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_SETTINGS" />
     <uses-permission android:name="jp.co.benesse.dcha.permission.ACCESS_SYSTEM" />
 
     <application

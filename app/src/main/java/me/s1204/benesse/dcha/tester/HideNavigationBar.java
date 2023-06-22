@@ -21,7 +21,11 @@ public class HideNavigationBar extends Activity {
             public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
                 mDchaService = IDchaService.Stub.asInterface(iBinder);
                 try {
-                    mDchaService.hideNavigationBar(Settings.System.getInt(getContentResolver(), "hide_navigation_bar") != 1);
+                    if (Settings.System.getInt(getContentResolver(), "hide_navigation_bar") == 1) {
+                        mDchaService.hideNavigationBar(false);
+                    } else {
+                        mDchaService.hideNavigationBar(true);
+                    }
                 } catch (RemoteException | Settings.SettingNotFoundException ignored) {
                 }
                 unbindService(this);
