@@ -3,7 +3,6 @@
     package="me.s1204.benesse.dcha.tester">
 
     <uses-sdk android:maxSdkVersion="28" />
-    <uses-permission android:name="android.permission.READ_SETTINGS" />
     <uses-permission android:name="jp.co.benesse.dcha.permission.ACCESS_SYSTEM" />
 
     <application
@@ -27,11 +26,19 @@
             android:name=".HideNavigationBar"
             android:enabled="false"
             android:exported="true"
-            android:label="Hide Navigation Bar">
+            android:label="ナビゲーションバーを隠す">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+        <activity
+            android:name=".ShowNavigationBar"
+            android:enabled="false"
+            android:exported="true"
+            android:label="ナビゲーションバーを表示">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
 

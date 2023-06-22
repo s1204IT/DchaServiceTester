@@ -10,7 +10,7 @@ import android.os.RemoteException;
 
 import jp.co.benesse.dcha.dchaservice.IDchaService;
 
-public class HideNavigationBar extends Activity {
+public class ShowNavigationBar extends Activity {
     IDchaService mDchaService;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -20,7 +20,7 @@ public class HideNavigationBar extends Activity {
             public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
                 mDchaService = IDchaService.Stub.asInterface(iBinder);
                 try {
-                        mDchaService.hideNavigationBar(true);
+                    mDchaService.hideNavigationBar(false);
                 } catch (RemoteException ignored) {
                 }
                 unbindService(this);
@@ -30,6 +30,6 @@ public class HideNavigationBar extends Activity {
                 unbindService(this);
             }
         }, 1);
-        finishAndRemoveTask();        
+        finishAndRemoveTask();
     }
 }
