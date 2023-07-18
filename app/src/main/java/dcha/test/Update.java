@@ -1,4 +1,4 @@
-package me.s1204.benesse.dcha.tester;
+package dcha.test;
 
 import android.app.Activity;
 import android.content.ComponentName;

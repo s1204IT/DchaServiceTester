@@ -1,4 +1,4 @@
-package me.s1204.benesse.dcha.tester;
+package dcha.test;
 
 import android.app.Activity;
 import android.content.ComponentName;
@@ -11,7 +11,7 @@ import android.os.RemoteException;
 
 import jp.co.benesse.dcha.dchaservice.IDchaService;
 
-public class Reboot extends Activity {
+public class ShowNavigationBar extends Activity {
     IDchaService mDchaService;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,7 @@ public class Reboot extends Activity {
             public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
                 mDchaService = IDchaService.Stub.asInterface(iBinder);
                 try {
-                    mDchaService.rebootPad(0, null);
+                    mDchaService.hideNavigationBar(false);
                 } catch (RemoteException ignored) {
                 }
                 unbindService(this);

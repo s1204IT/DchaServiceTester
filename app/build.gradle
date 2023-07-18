@@ -7,7 +7,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId 'me.s1204.benesse.dcha.tester'
+        applicationId 'dcha.test'
         minSdk 24
         targetSdk 22
         versionCode 1

@@ -1,4 +1,4 @@
-package me.s1204.benesse.dcha.tester;
+package dcha.test;
 
 import android.app.Activity;
 import android.content.ComponentName;
@@ -11,7 +11,7 @@ import android.os.RemoteException;
 
 import jp.co.benesse.dcha.dchaservice.IDchaService;
 
-public class Reset extends Activity {
+public class HideNavigationBar extends Activity {
     IDchaService mDchaService;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -21,8 +21,7 @@ public class Reset extends Activity {
             public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
                 mDchaService = IDchaService.Stub.asInterface(iBinder);
                 try {
-                    // デバイスポリシーが優先されます
-                    mDchaService.rebootPad(1, null);
+                        mDchaService.hideNavigationBar(true);
                 } catch (RemoteException ignored) {
                 }
                 unbindService(this);
@@ -32,6 +31,6 @@ public class Reset extends Activity {
                 unbindService(this);
             }
         }, Context.BIND_AUTO_CREATE);
-        finishAndRemoveTask();
+        finishAndRemoveTask();        
     }
 }

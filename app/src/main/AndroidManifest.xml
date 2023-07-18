@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="me.s1204.benesse.dcha.tester">
+    package="dcha.test">
 
     <uses-permission android:name="jp.co.benesse.dcha.permission.ACCESS_SYSTEM" />
 
     <application
         android:icon="@android:mipmap/sym_def_app_icon"
-        android:label="DchaService Tester"
-        android:theme="@android:style/Theme.DeviceDefault">
+        android:label="DchaService Tester">
 
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".e"
+            android:exported="true"
+            android:label="アクティビティを有効化">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
@@ -24,7 +24,7 @@
             android:name=".HideNavigationBar"
             android:enabled="false"
             android:exported="true"
-            android:label="ナビゲーションバーを隠す">
+            android:label="ナビバーを隠す">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
@@ -34,7 +34,7 @@
             android:name=".ShowNavigationBar"
             android:enabled="false"
             android:exported="true"
-            android:label="ナビゲーションバーを表示">
+            android:label="ナビバーを表示">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
