@@ -15,8 +15,9 @@ import jp.co.benesse.dcha.dchaservice.IDchaService;
 
 public class Update extends Activity {
     IDchaService mDchaService;
+    String CachePath = "/cache/update.zip";
     // 既定のパス (SDカードのルート)
-    protected String SDPath = "/storage/sdcard1/update.zip";
+    String SDPath = "/storage/sdcard1/update.zip";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +36,10 @@ public class Update extends Activity {
                 public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
                     mDchaService = IDchaService.Stub.asInterface(iBinder);
                     try {
-                        mDchaService.rebootPad(2, SDPath);
+                        //  コピーが終わるのを待つ
+                        if (mDchaService.copyUpdateImage(SDPath, CachePath)) {
+                            mDchaService.rebootPad(2, CachePath);
+                        }
                     } catch (RemoteException ignored) {
                     }
                     unbindService(this);
