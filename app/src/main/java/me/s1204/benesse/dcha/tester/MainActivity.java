@@ -23,6 +23,7 @@ public class MainActivity extends Activity {
         getPackageManager().setComponentEnabledSetting(new ComponentName(this, ShowNavigationBar.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
         getPackageManager().setComponentEnabledSetting(new ComponentName(this, Reboot.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
         getPackageManager().setComponentEnabledSetting(new ComponentName(this, Reset.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
+        getPackageManager().setComponentEnabledSetting(new ComponentName(this, Update.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
         // 文字表示
         setContentView(linearLayout);
     }

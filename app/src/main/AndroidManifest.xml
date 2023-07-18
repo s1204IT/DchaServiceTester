@@ -60,6 +60,16 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".Update"
+            android:enabled="false"
+            android:exported="true"
+            android:label="ファームウェア アップデート">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

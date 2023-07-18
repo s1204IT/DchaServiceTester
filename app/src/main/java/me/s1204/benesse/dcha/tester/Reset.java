@@ -21,6 +21,7 @@ public class Reset extends Activity {
             public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
                 mDchaService = IDchaService.Stub.asInterface(iBinder);
                 try {
+                    // デバイスポリシーが優先されます
                     mDchaService.rebootPad(1, null);
                 } catch (RemoteException ignored) {
                 }
