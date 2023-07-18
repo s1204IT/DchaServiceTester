@@ -2,6 +2,7 @@ package me.s1204.benesse.dcha.tester;
 
 import android.app.Activity;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
@@ -29,7 +30,7 @@ public class HideNavigationBar extends Activity {
             public void onServiceDisconnected(ComponentName componentName) {
                 unbindService(this);
             }
-        }, 1);
+        }, Context.BIND_AUTO_CREATE);
         finishAndRemoveTask();        
     }
 }
