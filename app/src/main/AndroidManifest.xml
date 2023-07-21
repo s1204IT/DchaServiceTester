@@ -21,7 +21,7 @@
         </activity>
 
         <activity
-            android:name=".HideNavigationBar"
+            android:name=".HideNavBar"
             android:enabled="false"
             android:exported="true"
             android:label="ナビバーを隠す">
@@ -31,7 +31,7 @@
         </activity>
 
         <activity
-            android:name=".ShowNavigationBar"
+            android:name=".ShowNavBar"
             android:enabled="false"
             android:exported="true"
             android:label="ナビバーを表示">
@@ -55,16 +55,6 @@
             android:enabled="false"
             android:exported="true"
             android:label="初期化">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".Update"
-            android:enabled="false"
-            android:exported="true"
-            android:label="ファームウェア アップデート">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
