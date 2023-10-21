@@ -1,65 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="dcha.test">
+    package="me.s1204.benesse.dcha.test">
 
     <uses-permission android:name="jp.co.benesse.dcha.permission.ACCESS_SYSTEM" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:icon="@android:mipmap/sym_def_app_icon"
         android:label="DchaService Tester">
-
         <activity
-            android:name=".e"
-            android:exported="true"
-            android:label="アクティビティを有効化">
+            android:name=".Tester"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".HideNavBar"
-            android:enabled="false"
-            android:exported="true"
-            android:label="ナビバーを隠す">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".ShowNavBar"
-            android:enabled="false"
-            android:exported="true"
-            android:label="ナビバーを表示">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".Reboot"
-            android:enabled="false"
-            android:exported="true"
-            android:label="再起動">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".Reset"
-            android:enabled="false"
-            android:exported="true"
-            android:label="初期化">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-        </activity>
-
     </application>
 
 </manifest>
