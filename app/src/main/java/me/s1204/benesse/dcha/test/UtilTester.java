@@ -34,7 +34,7 @@ public class UtilTester extends Activity {
             @Override
             public void onServiceDisconnected(ComponentName componentName) {
                 unbindService(this);
-                Toast.makeText(getApplicationContext(), "DchaService から切断されました", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "DchaUtilService から切断されました", Toast.LENGTH_LONG).show();
                 finishAndRemoveTask();
             }
         }, Context.BIND_AUTO_CREATE)) {
