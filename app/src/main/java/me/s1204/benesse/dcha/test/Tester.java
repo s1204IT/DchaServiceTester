@@ -30,6 +30,8 @@ public class Tester extends Activity {
             @Override
             public void onServiceDisconnected(ComponentName componentName) {
                 unbindService(this);
+                Toast.makeText(getApplicationContext(), "DchaService から切断されました", Toast.LENGTH_LONG).show();
+                finishAndRemoveTask();
             }
         }, Context.BIND_AUTO_CREATE)) {
 
@@ -371,8 +373,8 @@ public class Tester extends Activity {
                                     Toast.makeText(getApplicationContext(), "フルパスで入力してください", Toast.LENGTH_SHORT).show();
                                     return;
                                 }
-                                if (!filePath.endsWith(".zip") || !filePath.endsWith(".bin")) {
-                                    Toast.makeText(getApplicationContext(), "ZIP/BINファイルを指定してください", Toast.LENGTH_SHORT).show();
+                                if (filePath.endsWith("/")) {
+                                    Toast.makeText(getApplicationContext(), "ファイルを指定してください", Toast.LENGTH_SHORT).show();
                                     return;
                                 }
                             }
@@ -406,6 +408,9 @@ public class Tester extends Activity {
                         public void onClick(View view) {
                             EditText pkgBox = findViewById(R.id.removeTask_package);
                             String pkgId = pkgBox.getText().toString();
+                            if (pkgId.equals("")) {
+                                pkgId = null;
+                            }
                             try {
                                 mDchaService.removeTask(pkgId);
                             } catch (RemoteException ignored) {
