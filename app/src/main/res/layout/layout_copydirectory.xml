@@ -17,24 +17,32 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="copyFile"
+            android:text="copyDirectory"
             android:textSize="26sp" />
 
         <EditText
-            android:id="@+id/copyFile_from"
+            android:id="@+id/copyDirectory_from"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:hint="ファイルのコピー元パス" />
+            android:hint="ディレクトリのコピー元フルパス" />
 
         <EditText
-            android:id="@+id/copyFile_to"
+            android:id="@+id/copyDirectory_to"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:hint="ファイルのコピー先パス" />
+            android:hint="ディレクトリのコピー先フルパス" />
+
+        <EditText
+            android:id="@+id/copyDirectory_makeTopDir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:hint="makeTopDir (true/false)" />
 
         <Button
             android:id="@+id/exec"

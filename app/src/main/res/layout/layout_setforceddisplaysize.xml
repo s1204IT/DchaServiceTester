@@ -17,24 +17,26 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="copyFile"
+            android:text="setForcedDisplaySize"
             android:textSize="26sp" />
 
         <EditText
-            android:id="@+id/copyFile_from"
+            android:id="@+id/setForcedDisplaySize_width"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:hint="ファイルのコピー元パス" />
+            android:inputType="number"
+            android:hint="横" />
 
         <EditText
-            android:id="@+id/copyFile_to"
+            android:id="@+id/setForcedDisplaySize_height"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:hint="ファイルのコピー先パス" />
+            android:inputType="number"
+            android:hint="縦" />
 
         <Button
             android:id="@+id/exec"

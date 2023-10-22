@@ -17,24 +17,16 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="copyFile"
+            android:text="existsFile"
             android:textSize="26sp" />
 
         <EditText
-            android:id="@+id/copyFile_from"
+            android:id="@+id/existsFile_file"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:hint="ファイルのコピー元パス" />
-
-        <EditText
-            android:id="@+id/copyFile_to"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:hint="ファイルのコピー先パス" />
+            android:hint="検証するパス" />
 
         <Button
             android:id="@+id/exec"

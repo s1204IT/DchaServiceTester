@@ -70,6 +70,10 @@ public class Tester extends Activity {
                         public void onClick(View view) {
                             EditText pkgBox = findViewById(R.id.clearDefaultPreferredApp_package);
                             String pkgId = pkgBox.getText().toString();
+                            if (pkgId.equals("")) {
+                                Toast.makeText(getApplicationContext(), "パッケージIDを指定してください", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
                             try {
                                 mDchaService.clearDefaultPreferredApp(pkgId);
                             } catch (RemoteException ignored) {
@@ -187,10 +191,6 @@ public class Tester extends Activity {
                             String filePath = fileBox.getText().toString();
                             if (!filePath.startsWith("/")) {
                                 Toast.makeText(getApplicationContext(), "フルパスで入力してください", Toast.LENGTH_SHORT).show();
-                                return;
-                            }
-                            if (filePath.endsWith("/")) {
-                                Toast.makeText(getApplicationContext(), "ファイルを指定してください", Toast.LENGTH_SHORT).show();
                                 return;
                             }
                             try {
