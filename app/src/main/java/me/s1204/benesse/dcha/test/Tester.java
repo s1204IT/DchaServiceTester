@@ -51,8 +51,9 @@ public class Tester extends Activity {
                 @Override
                 public void onClick(View view) {
                     try {
+                        // false を返す
                         String result = String.valueOf(mDchaService.checkPadRooted());
-                        Toast.makeText(getApplicationContext(), "実行結果：" + result, Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "checkPadRooted：" + result, Toast.LENGTH_LONG).show();
                     } catch (RemoteException ignored) {
                     }
                 }
@@ -229,7 +230,7 @@ public class Tester extends Activity {
                 public void onClick(View view) {
                     try {
                         String result = mDchaService.getForegroundPackageName();
-                        Toast.makeText(getApplicationContext(), "実行結果：" + result, Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "getForegroundPackageName：" + result, Toast.LENGTH_LONG).show();
                     } catch (RemoteException ignored) {
                     }
                 }
@@ -241,7 +242,7 @@ public class Tester extends Activity {
                 public void onClick(View view) {
                     try {
                         int result = mDchaService.getSetupStatus();
-                        Toast.makeText(getApplicationContext(), "実行結果：" + result, Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "getSetupStatus：" + result, Toast.LENGTH_LONG).show();
                     } catch (RemoteException ignored) {
                     }
                 }
@@ -253,7 +254,7 @@ public class Tester extends Activity {
                 public void onClick(View view) {
                     try {
                         int result = mDchaService.getUserCount();
-                        Toast.makeText(getApplicationContext(), "実行結果：" + result, Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "getUserCount：" + result, Toast.LENGTH_LONG).show();
                     } catch (RemoteException ignored) {
                     }
                 }
@@ -345,8 +346,9 @@ public class Tester extends Activity {
                 @Override
                 public void onClick(View view) {
                     try {
+                        // false を返す
                         String result = String.valueOf(mDchaService.isDeviceEncryptionEnabled());
-                        Toast.makeText(getApplicationContext(), "実行結果：" + result, Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "isDeviceEncryptionEnabled：" + result, Toast.LENGTH_LONG).show();
                     } catch (RemoteException ignored) {
                     }
                 }
@@ -358,7 +360,7 @@ public class Tester extends Activity {
                 public void onClick(View view) {
                     setContentView(R.layout.layout_rebootpad);
 
-                    // deleteFile(file)
+                    // rebootPad(file)
                     findViewById(R.id.exec).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -368,6 +370,7 @@ public class Tester extends Activity {
                             String filePath = fileBox.getText().toString();
                             if (flag.equals("")) {
                                 flag = "0";
+                                filePath = null;
                             } else if (flag.equals("2")) {
                                 if (!filePath.startsWith("/")) {
                                     Toast.makeText(getApplicationContext(), "フルパスで入力してください", Toast.LENGTH_SHORT).show();
@@ -682,6 +685,7 @@ public class Tester extends Activity {
                                 return;
                             }
                             try {
+                                // true を返す
                                 String result = String.valueOf(mDchaService.verifyUpdateImage(filePath));
                                 Toast.makeText(getApplicationContext(), "実行結果：" + result, Toast.LENGTH_LONG).show();
                             } catch (RemoteException ignored) {

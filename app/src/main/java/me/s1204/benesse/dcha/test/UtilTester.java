@@ -163,10 +163,6 @@ public class UtilTester extends Activity {
                         public void onClick(View view) {
                             EditText fileBox = findViewById(R.id.deleteFile_file);
                             String filePath = fileBox.getText().toString();
-                            if (filePath.endsWith("/")) {
-                                Toast.makeText(getApplicationContext(), "ファイルを指定してください", Toast.LENGTH_SHORT).show();
-                                return;
-                            }
                             try {
                                 String result = String.valueOf(mUtilService.deleteFile(filePath));
                                 Toast.makeText(getApplicationContext(), "実行結果：" + result, Toast.LENGTH_LONG).show();
@@ -198,10 +194,6 @@ public class UtilTester extends Activity {
                         public void onClick(View view) {
                             EditText fileBox = findViewById(R.id.existsFile_file);
                             String filePath = fileBox.getText().toString();
-                            if (filePath.endsWith("/")) {
-                                Toast.makeText(getApplicationContext(), "ファイルを指定してください", Toast.LENGTH_SHORT).show();
-                                return;
-                            }
                             try {
                                 String result = String.valueOf(mUtilService.existsFile(filePath));
                                 Toast.makeText(getApplicationContext(), "実行結果：" + result, Toast.LENGTH_LONG).show();
@@ -262,7 +254,7 @@ public class UtilTester extends Activity {
                 public void onClick(View view) {
                     try {
                         int[] result = mUtilService.getDisplaySize();
-                        Toast.makeText(getApplicationContext(), "実行結果：" + Arrays.toString(result), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "getDisplaySize：" + Arrays.toString(result), Toast.LENGTH_LONG).show();
                     } catch (RemoteException ignored) {
                     }
                 }
@@ -273,8 +265,12 @@ public class UtilTester extends Activity {
                 @Override
                 public void onClick(View view) {
                     try {
+                        /*
+                          jp.co.benesse.touch.allgrade.b003.touchhomelauncher が存在する場合は
+                          [1280, 800] を返す
+                         */
                         int[] result = mUtilService.getLcdSize();
-                        Toast.makeText(getApplicationContext(), "実行結果：" + Arrays.toString(result), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "getLcdSize：" + Arrays.toString(result), Toast.LENGTH_LONG).show();
                     } catch (RemoteException ignored) {
                     }
                 }
@@ -286,7 +282,7 @@ public class UtilTester extends Activity {
                 public void onClick(View view) {
                     try {
                         int result = mUtilService.getUserCount();
-                        Toast.makeText(getApplicationContext(), "実行結果：" + result, Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "getUserCount：" + result, Toast.LENGTH_LONG).show();
                     } catch (RemoteException ignored) {
                     }
                 }
@@ -461,6 +457,7 @@ public class UtilTester extends Activity {
                                 if ((Build.MODEL).startsWith("TAB-A05-B")) {
                                     width = "1920";
                                 } else {
+                                    // jp.co.benesse.dcha.util..WindowManagerAdapter.RESOLUTION_WXGA_WIDTH
                                     width = "1280";
                                 }
                             }
@@ -468,9 +465,11 @@ public class UtilTester extends Activity {
                                 if ((Build.MODEL).startsWith("TAB-A05-B")) {
                                     height = "1200";
                                 } else {
+                                    // jp.co.benesse.dcha.util..WindowManagerAdapter.RESOLUTION_WXGA_HEIGHT
                                     height = "800";
                                 }
                             }
+                            // [1024, 768]: XGA
                             try {
                                 String result = String.valueOf(mUtilService.setForcedDisplaySize(Integer.parseInt(width), Integer.parseInt(height)));
                                 Toast.makeText(getApplicationContext(), "実行結果：" + result, Toast.LENGTH_LONG).show();

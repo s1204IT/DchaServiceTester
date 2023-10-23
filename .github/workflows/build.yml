@@ -7,7 +7,6 @@ on:
       - 'app/**'
       - 'gradle/**'
       - '*.gradle'
-      - 'gradle.*'
   workflow_dispatch:
     inputs:
       release:
