@@ -457,7 +457,7 @@ public class UtilTester extends Activity {
                                 if ((Build.MODEL).startsWith("TAB-A05-B")) {
                                     width = "1920";
                                 } else {
-                                    // jp.co.benesse.dcha.util..WindowManagerAdapter.RESOLUTION_WXGA_WIDTH
+                                    // jp.co.benesse.dcha.util.WindowManagerAdapter.RESOLUTION_WXGA_WIDTH
                                     width = "1280";
                                 }
                             }
@@ -465,7 +465,7 @@ public class UtilTester extends Activity {
                                 if ((Build.MODEL).startsWith("TAB-A05-B")) {
                                     height = "1200";
                                 } else {
-                                    // jp.co.benesse.dcha.util..WindowManagerAdapter.RESOLUTION_WXGA_HEIGHT
+                                    // jp.co.benesse.dcha.util.WindowManagerAdapter.RESOLUTION_WXGA_HEIGHT
                                     height = "800";
                                 }
                             }

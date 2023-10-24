@@ -156,7 +156,7 @@ public class Tester extends Activity {
                                 Toast.makeText(getApplicationContext(), "ファイルを指定してください", Toast.LENGTH_SHORT).show();
                                 return;
                             }
-                            if (!toPath.startsWith("/cache/..")) {
+                            if (!toPath.startsWith("/cache")) {
                                 toPath = "/cache/.." + toPath;
                             }
                             try {
