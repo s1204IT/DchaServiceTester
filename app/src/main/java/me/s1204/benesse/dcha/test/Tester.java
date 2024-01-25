@@ -646,7 +646,7 @@ public class Tester extends Activity {
                                 flag = "1"; // 内部フラグが 2(既定) から 3 に変更
                             }
                             try {
-                                String result = String.valueOf(mDchaService.installApp(pkgId, Integer.parseInt(flag)));
+                                String result = String.valueOf(mDchaService.uninstallApp(pkgId, Integer.parseInt(flag)));
                                 Toast.makeText(getApplicationContext(), "実行結果：" + result, Toast.LENGTH_LONG).show();
                             } catch (RemoteException ignored) {
                             }
