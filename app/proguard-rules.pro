@@ -1,1 +1,2 @@
--keep class jp.co.benesse.dcha.**
+-keep class jp.co.benesse.dcha.dchaservice.IDchaService
+-keep class jp.co.benesse.dcha.dchautilservice.IDchaUtilService
