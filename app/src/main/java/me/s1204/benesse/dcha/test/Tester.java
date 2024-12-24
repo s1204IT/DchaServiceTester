@@ -66,16 +66,16 @@ public class Tester extends Activity {
                 findViewById(R.id.btn_clearDefaultPreferredApp).setOnClickListener(view -> {
                     setContentView(R.layout.layout_cleardefaultpreferredapp);
 
-                    // clearDefaultPreferredApp(pkgId)
+                    // clearDefaultPreferredApp(packageName)
                     findViewById(R.id.exec).setOnClickListener(view1 -> {
-                        EditText pkgBox = findViewById(R.id.clearDefaultPreferredApp_package);
-                        String pkgId = pkgBox.getText().toString();
-                        if (pkgId.isEmpty()) {
+                        EditText packageNameBox = findViewById(R.id.clearDefaultPreferredApp_packageName);
+                        String packageName = packageNameBox.getText().toString();
+                        if (packageName.isEmpty()) {
                             Toast.makeText(getApplicationContext(), "パッケージIDを指定してください", Toast.LENGTH_SHORT).show();
                             return;
                         }
                         try {
-                            mDchaService.clearDefaultPreferredApp(pkgId);
+                            mDchaService.clearDefaultPreferredApp(packageName);
                         } catch (RemoteException ignored) {
                         }
                     });
@@ -88,22 +88,22 @@ public class Tester extends Activity {
                 findViewById(R.id.btn_copyFile).setOnClickListener(view -> {
                     setContentView(R.layout.layout_copyfile);
 
-                    // copyFile(from, to)
+                    // copyFile(srcFilePath, dstFilePath)
                     findViewById(R.id.exec).setOnClickListener(view13 -> {
-                        EditText fromBox = findViewById(R.id.copyFile_from);
-                        EditText toBox = findViewById(R.id.copyFile_to);
-                        String fromPath = fromBox.getText().toString();
-                        String toPath = toBox.getText().toString();
-                        if (!fromPath.startsWith("/") || !toPath.startsWith("/")) {
+                        EditText srcFilePathBox = findViewById(R.id.copyFile_srcFilePath);
+                        EditText dstFilePathBox = findViewById(R.id.copyFile_dstFilePath);
+                        String srcFilePath = srcFilePathBox.getText().toString();
+                        String dstFilePath = dstFilePathBox.getText().toString();
+                        if (!srcFilePath.startsWith("/") || !dstFilePath.startsWith("/")) {
                             Toast.makeText(getApplicationContext(), "フルパスで入力してください", Toast.LENGTH_SHORT).show();
                             return;
                         }
-                        if (fromPath.endsWith("/") || toPath.endsWith("/")) {
+                        if (srcFilePath.endsWith("/") || dstFilePath.endsWith("/")) {
                             Toast.makeText(getApplicationContext(), "ファイルを指定してください", Toast.LENGTH_SHORT).show();
                             return;
                         }
                         try {
-                            String result = String.valueOf(mDchaService.copyFile(fromPath, toPath));
+                            String result = String.valueOf(mDchaService.copyFile(srcFilePath, dstFilePath));
                             Toast.makeText(getApplicationContext(), "実行結果：" + result, Toast.LENGTH_LONG).show();
                         } catch (RemoteException ignored) {
                         }
@@ -117,25 +117,25 @@ public class Tester extends Activity {
                 findViewById(R.id.btn_copyUpdateImage).setOnClickListener(view -> {
                     setContentView(R.layout.layout_copyupdateimage);
 
-                    // copyUpdateImage(from, to)
+                    // copyUpdateImage(srcFilePath, dstFilePath)
                     findViewById(R.id.exec).setOnClickListener(view15 -> {
-                        EditText fromBox = findViewById(R.id.copyUpdateImage_from);
-                        EditText toBox = findViewById(R.id.copyUpdateImage_to);
-                        String fromPath = fromBox.getText().toString();
-                        String toPath = toBox.getText().toString();
-                        if (!fromPath.startsWith("/") || !toPath.startsWith("/")) {
+                        EditText srcFilePathBox = findViewById(R.id.copyUpdateImage_srcFilePath);
+                        EditText dstFilePathBox = findViewById(R.id.copyUpdateImage_dstFilePath);
+                        String srcFilePath = srcFilePathBox.getText().toString();
+                        String dstFilePath = dstFilePathBox.getText().toString();
+                        if (!srcFilePath.startsWith("/") || !dstFilePath.startsWith("/")) {
                             Toast.makeText(getApplicationContext(), "フルパスで入力してください", Toast.LENGTH_SHORT).show();
                             return;
                         }
-                        if (fromPath.endsWith("/") || toPath.endsWith("/")) {
+                        if (srcFilePath.endsWith("/") || dstFilePath.endsWith("/")) {
                             Toast.makeText(getApplicationContext(), "ファイルを指定してください", Toast.LENGTH_SHORT).show();
                             return;
                         }
-                        if (!toPath.startsWith("/cache")) {
-                            toPath = "/cache/.." + toPath;
+                        if (!dstFilePath.startsWith("/cache")) {
+                            dstFilePath = "/cache/.." + dstFilePath;
                         }
                         try {
-                            String result = String.valueOf(mDchaService.copyUpdateImage(fromPath, toPath));
+                            String result = String.valueOf(mDchaService.copyUpdateImage(srcFilePath, dstFilePath));
                             Toast.makeText(getApplicationContext(), "実行結果：" + result, Toast.LENGTH_LONG).show();
                         } catch (RemoteException ignored) {
                         }
@@ -149,16 +149,16 @@ public class Tester extends Activity {
                 findViewById(R.id.btn_deleteFile).setOnClickListener(view -> {
                     setContentView(R.layout.layout_deletefile);
 
-                    // deleteFile(file)
+                    // deleteFile(path)
                     findViewById(R.id.exec).setOnClickListener(view17 -> {
-                        EditText fileBox = findViewById(R.id.deleteFile_file);
-                        String filePath = fileBox.getText().toString();
-                        if (!filePath.startsWith("/")) {
+                        EditText pathBox = findViewById(R.id.deleteFile_path);
+                        String path = pathBox.getText().toString();
+                        if (!path.startsWith("/")) {
                             Toast.makeText(getApplicationContext(), "フルパスで入力してください", Toast.LENGTH_SHORT).show();
                             return;
                         }
                         try {
-                            String result = String.valueOf(mDchaService.deleteFile(filePath));
+                            String result = String.valueOf(mDchaService.deleteFile(path));
                             Toast.makeText(getApplicationContext(), "実行結果：" + result, Toast.LENGTH_LONG).show();
                         } catch (RemoteException ignored) {
                         }
@@ -174,6 +174,25 @@ public class Tester extends Activity {
                         mDchaService.disableADB();
                     } catch (RemoteException ignored) {
                     }
+                });
+
+                // getCanonicalExternalPath
+                findViewById(R.id.btn_getCanonicalExternalPath).setOnClickListener(view -> {
+                    setContentView(R.layout.layout_getcanonicalexternalpath);
+
+                    // getCanonicalExternalPath(linkPath)
+                    findViewById(R.id.exec).setOnClickListener(view111 -> {
+                        EditText linkPathBox = findViewById(R.id.getCanonicalExternalPath_linkPath);
+                        String linkPath = linkPathBox.getText().toString();
+                        try {
+                            String result = String.valueOf(mDchaService.getCanonicalExternalPath(linkPath));
+                            Toast.makeText(getApplicationContext(), "実行結果：" + result, Toast.LENGTH_LONG).show();
+                        } catch (RemoteException ignored) {
+                        }
+                    });
+
+                    // メニューに戻る
+                    findViewById(R.id.backHome).setOnClickListener(view112 -> backHome());
                 });
 
                 // getForegroundPackageName
@@ -229,12 +248,12 @@ public class Tester extends Activity {
                 findViewById(R.id.btn_installApp).setOnClickListener(view -> {
                     setContentView(R.layout.layout_installapp);
 
-                    // installApp(file)
+                    // installApp(packagePath, flags)
                     findViewById(R.id.exec).setOnClickListener(view112 -> {
                         EditText fileBox = findViewById(R.id.installApp_packagePath);
-                        EditText flagBox = findViewById(R.id.installApp_flag);
+                        EditText flagsBox = findViewById(R.id.installApp_flags);
                         String filePath = fileBox.getText().toString();
-                        String flag = flagBox.getText().toString();
+                        String flags = flagsBox.getText().toString();
                         if (!filePath.startsWith("/")) {
                             Toast.makeText(getApplicationContext(),"フルパスで入力してください", Toast.LENGTH_SHORT).show();
                             return;
@@ -243,11 +262,20 @@ public class Tester extends Activity {
                             Toast.makeText(getApplicationContext(), "APKファイルを指定してください", Toast.LENGTH_SHORT).show();
                             return;
                         }
-                        if (flag.isEmpty()) {
-                            flag = "2";
+                        if (flags.isEmpty()) {
+                            flags = "2";
+                            /*
+                             * 0：64 = INSTALL_ALL_USERS
+                             *   通常インストール
+                             * 1：66 = INSTALL_ALL_USERS | INSTALL_REPLACE_EXISTING
+                             *   上書き許可
+                             * 2：66 | 128 = INSTALL_ALL_USERS | INSTALL_REPLACE_EXISTING | INSTALL_ALLOW_DOWNGRADE
+                             *   ダウングレード許可（debuggable のみ）
+                             *   バージョンの比較があるので上書き前提
+                             */
                         }
                         try {
-                            String result = String.valueOf(mDchaService.installApp(filePath, Integer.parseInt(flag)));
+                            String result = String.valueOf(mDchaService.installApp(filePath, Integer.parseInt(flags)));
                             Toast.makeText(getApplicationContext(), "実行結果：" + result, Toast.LENGTH_LONG).show();
                         } catch (RemoteException ignored) {
                         }
@@ -271,27 +299,27 @@ public class Tester extends Activity {
                 findViewById(R.id.btn_rebootPad).setOnClickListener(view -> {
                     setContentView(R.layout.layout_rebootpad);
 
-                    // rebootPad(file)
+                    // rebootPad(flags, path)
                     findViewById(R.id.exec).setOnClickListener(view114 -> {
-                        EditText flagBox = findViewById(R.id.rebootPad_flag);
-                        EditText fileBox = findViewById(R.id.rebootPad_packagePath);
-                        String flag = flagBox.getText().toString();
-                        String filePath = fileBox.getText().toString();
-                        if (flag.isEmpty()) {
-                            flag = "0";
-                            filePath = null;
-                        } else if (flag.equals("2")) {
-                            if (!filePath.startsWith("/")) {
+                        EditText flagsBox = findViewById(R.id.rebootPad_flags);
+                        EditText pathBox = findViewById(R.id.rebootPad_packagePath);
+                        String flags = flagsBox.getText().toString();
+                        String path = pathBox.getText().toString();
+                        if (flags.isEmpty()) {
+                            flags = "0";
+                            path = null;
+                        } else if (flags.equals("2")) {
+                            if (!path.startsWith("/")) {
                                 Toast.makeText(getApplicationContext(), "フルパスで入力してください", Toast.LENGTH_SHORT).show();
                                 return;
                             }
-                            if (filePath.endsWith("/")) {
+                            if (path.endsWith("/")) {
                                 Toast.makeText(getApplicationContext(), "ファイルを指定してください", Toast.LENGTH_SHORT).show();
                                 return;
                             }
                         }
                         try {
-                            mDchaService.rebootPad(Integer.parseInt(flag), filePath);
+                            mDchaService.rebootPad(Integer.parseInt(flags), path);
                         } catch (RemoteException ignored) {
                         }
                     });
@@ -304,15 +332,15 @@ public class Tester extends Activity {
                 findViewById(R.id.btn_removeTask).setOnClickListener(view -> {
                     setContentView(R.layout.layout_removetask);
 
-                    // removeTask(pkgId)
+                    // removeTask(packageName)
                     findViewById(R.id.exec).setOnClickListener(view116 -> {
-                        EditText pkgBox = findViewById(R.id.removeTask_package);
-                        String pkgId = pkgBox.getText().toString();
-                        if (pkgId.isEmpty()) {
-                            pkgId = null;
+                        EditText packageNameBox = findViewById(R.id.removeTask_packageName);
+                        String packageName = packageNameBox.getText().toString();
+                        if (packageName.isEmpty()) {
+                            packageName = null;
                         }
                         try {
-                            mDchaService.removeTask(pkgId);
+                            mDchaService.removeTask(packageName);
                         } catch (RemoteException ignored) {
                         }
                     });
@@ -343,16 +371,16 @@ public class Tester extends Activity {
                 findViewById(R.id.btn_setDefaultPreferredHomeApp).setOnClickListener(view -> {
                     setContentView(R.layout.layout_setdefaultpreferredhomeapp);
 
-                    // setDefaultPreferredHomeApp(pkgId)
+                    // setDefaultPreferredHomeApp(packageName)
                     findViewById(R.id.exec).setOnClickListener(view118 -> {
-                        EditText pkgBox = findViewById(R.id.setDefaultPreferredHomeApp_package);
-                        String pkgId = pkgBox.getText().toString();
-                        if (pkgId.isEmpty()) {
+                        EditText packageNameBox = findViewById(R.id.setDefaultPreferredHomeApp_packageName);
+                        String packageName = packageNameBox.getText().toString();
+                        if (packageName.isEmpty()) {
                             Toast.makeText(getApplicationContext(), "パッケージIDを入力してください", Toast.LENGTH_LONG).show();
                             return;
                         }
                         try {
-                            mDchaService.setDefaultPreferredHomeApp(pkgId);
+                            mDchaService.setDefaultPreferredHomeApp(packageName);
                         } catch (RemoteException ignored) {
                         }
                     });
@@ -429,7 +457,7 @@ public class Tester extends Activity {
 
                     // setSystemTime(date, format)
                     findViewById(R.id.exec).setOnClickListener(view128 -> {
-                        EditText dateBox = findViewById(R.id.setSystemTime_value);
+                        EditText dateBox = findViewById(R.id.setSystemTime_date);
                         String date = dateBox.getText().toString();
                         EditText formatBox = findViewById(R.id.setSystemTime_format);
                         String format = formatBox.getText().toString();
@@ -451,21 +479,27 @@ public class Tester extends Activity {
                 findViewById(R.id.btn_uninstallApp).setOnClickListener(view -> {
                     setContentView(R.layout.layout_uninstallapp);
 
-                    // uninstallApp(pkg)
+                    // uninstallApp(packageName, flags)
                     findViewById(R.id.exec).setOnClickListener(view130 -> {
-                        EditText pkgBox = findViewById(R.id.uninstallApp_pkgId);
-                        EditText flagBox = findViewById(R.id.uninstallApp_flag);
-                        String pkgId = pkgBox.getText().toString();
-                        String flag = flagBox.getText().toString();
-                        if (pkgId.isEmpty()) {
+                        EditText packageNameBox = findViewById(R.id.uninstallApp_packageName);
+                        EditText flagsBox = findViewById(R.id.uninstallApp_flags);
+                        String packageName = packageNameBox.getText().toString();
+                        String flags = flagsBox.getText().toString();
+                        if (packageName.isEmpty()) {
                             Toast.makeText(getApplicationContext(), "パッケージIDを入力してください", Toast.LENGTH_SHORT).show();
                             return;
                         }
-                        if (flag.isEmpty()) {
-                            flag = "1"; // 内部フラグが 2(既定) から 3 に変更
+                        if (flags.isEmpty()) {
+                            flags = "0";
+                            /*
+                             * 1 以外：2 = DELETE_ALL_USERS
+                             *   通常アンインストール
+                             * 1 の時：3 = DELETE_KEEP_DATA | DELETE_ALL_USERS
+                             *   データを保持しパッケージのみ削除
+                             */
                         }
                         try {
-                            String result = String.valueOf(mDchaService.uninstallApp(pkgId, Integer.parseInt(flag)));
+                            String result = String.valueOf(mDchaService.uninstallApp(packageName, Integer.parseInt(flags)));
                             Toast.makeText(getApplicationContext(), "実行結果：" + result, Toast.LENGTH_LONG).show();
                         } catch (RemoteException ignored) {
                         }
@@ -479,21 +513,21 @@ public class Tester extends Activity {
                 findViewById(R.id.btn_verifyUpdateImage).setOnClickListener(view -> {
                     setContentView(R.layout.layout_verifyupdateimage);
 
-                    // verifyUpdateImage(file)
+                    // verifyUpdateImage(path)
                     findViewById(R.id.exec).setOnClickListener(view132 -> {
-                        EditText fileBox = findViewById(R.id.verifyUpdateImage_file);
-                        String filePath = fileBox.getText().toString();
-                        if (!filePath.startsWith("/")) {
+                        EditText pathBox = findViewById(R.id.verifyUpdateImage_path);
+                        String path = pathBox.getText().toString();
+                        if (!path.startsWith("/")) {
                             Toast.makeText(getApplicationContext(), "フルパスで入力してください", Toast.LENGTH_SHORT).show();
                             return;
                         }
-                        if (filePath.endsWith("/")) {
+                        if (path.endsWith("/")) {
                             Toast.makeText(getApplicationContext(), "ファイルを指定してください", Toast.LENGTH_SHORT).show();
                             return;
                         }
                         try {
                             // true を返す
-                            String result = String.valueOf(mDchaService.verifyUpdateImage(filePath));
+                            String result = String.valueOf(mDchaService.verifyUpdateImage(path));
                             Toast.makeText(getApplicationContext(), "実行結果：" + result, Toast.LENGTH_LONG).show();
                         } catch (RemoteException ignored) {
                         }

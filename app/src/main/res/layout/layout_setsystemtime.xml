@@ -21,7 +21,7 @@
             android:textSize="26sp" />
 
         <EditText
-            android:id="@+id/setSystemTime_value"
+            android:id="@+id/setSystemTime_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

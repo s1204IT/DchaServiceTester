@@ -52,16 +52,16 @@ public class UtilTester extends Activity {
                 findViewById(R.id.btn_clearDefaultPreferredApp).setOnClickListener(view -> {
                     setContentView(R.layout.layout_cleardefaultpreferredapp);
 
-                    // clearDefaultPreferredApp(pkgId)
+                    // clearDefaultPreferredApp(packageName)
                     findViewById(R.id.exec).setOnClickListener(view1 -> {
-                        EditText pkgBox = findViewById(R.id.clearDefaultPreferredApp_package);
-                        String pkgId = pkgBox.getText().toString();
-                        if (pkgId.isEmpty()) {
+                        EditText packageNameBox = findViewById(R.id.clearDefaultPreferredApp_packageName);
+                        String packageName = packageNameBox.getText().toString();
+                        if (packageName.isEmpty()) {
                             Toast.makeText(getApplicationContext(), "パッケージIDを入力してください", Toast.LENGTH_SHORT).show();
                             return;
                         }
                         try {
-                            mUtilService.clearDefaultPreferredApp(pkgId);
+                            mUtilService.clearDefaultPreferredApp(packageName);
                         } catch (RemoteException ignored) {
                         }
                     });
@@ -74,22 +74,28 @@ public class UtilTester extends Activity {
                 findViewById(R.id.btn_copyDirectory).setOnClickListener(view -> {
                     setContentView(R.layout.layout_copydirectory);
 
-                    // copyDirectory(from, to)
+                    // copyDirectory(srcDirPath, dstDirPath, makeTopDir)
                     findViewById(R.id.exec).setOnClickListener(view13 -> {
-                        EditText fromBox = findViewById(R.id.copyDirectory_from);
-                        EditText toBox = findViewById(R.id.copyDirectory_to);
-                        EditText topBox = findViewById(R.id.copyDirectory_makeTopDir);
-                        String fromPath = fromBox.getText().toString();
-                        String toPath = toBox.getText().toString();
-                        String makeTop = topBox.getText().toString();
-                        if (makeTop.isEmpty()) {
-                            makeTop = "false";
-                        } else if (!makeTop.equals("true") && !makeTop.equals("false")) {
+                        EditText srcDirPathBox = findViewById(R.id.copyDirectory_srcDirPath);
+                        EditText dstDirPathBox = findViewById(R.id.copyDirectory_dstDirPath);
+                        EditText makeTopDirBox = findViewById(R.id.copyDirectory_makeTopDir);
+                        String srcDirPath = srcDirPathBox.getText().toString();
+                        String dstDirPath = dstDirPathBox.getText().toString();
+                        String makeTopDir = makeTopDirBox.getText().toString();
+                        if (makeTopDir.isEmpty()) {
+                            makeTopDir = "false";
+                            /*
+                             * true ：フォルダ自体をコピー
+                             *   srcDir の最終ディレクトリ名で新しいフォルダを作成し、中身をコピー
+                             * false：フォルダの中身のみコピー
+                             *   srcDir の中身をコピー
+                             */
+                        } else if (!makeTopDir.equals("true") && !makeTopDir.equals("false")) {
                             Toast.makeText(getApplicationContext(), "真理値を正しく入力してください", Toast.LENGTH_LONG).show();
                             return;
                         }
                         try {
-                            String result = String.valueOf(mUtilService.copyDirectory(fromPath, toPath, Boolean.parseBoolean(makeTop)));
+                            String result = String.valueOf(mUtilService.copyDirectory(srcDirPath, dstDirPath, Boolean.parseBoolean(makeTopDir)));
                             Toast.makeText(getApplicationContext(), "実行結果：" + result, Toast.LENGTH_LONG).show();
                         } catch (RemoteException ignored) {
                         }
@@ -103,18 +109,18 @@ public class UtilTester extends Activity {
                 findViewById(R.id.btn_copyFile).setOnClickListener(view -> {
                     setContentView(R.layout.layout_copyfile);
 
-                    // copyFile(from, to)
+                    // copyFile(srcFilePath, dstFilePath)
                     findViewById(R.id.exec).setOnClickListener(view15 -> {
-                        EditText fromBox = findViewById(R.id.copyFile_from);
-                        EditText toBox = findViewById(R.id.copyFile_to);
-                        String fromPath = fromBox.getText().toString();
-                        String toPath = toBox.getText().toString();
-                        if (fromPath.endsWith("/") || toPath.endsWith("/")) {
+                        EditText srcFilePathBox = findViewById(R.id.copyFile_srcFilePath);
+                        EditText dstFilePathBox = findViewById(R.id.copyFile_dstFilePath);
+                        String srcFilePath = srcFilePathBox.getText().toString();
+                        String dstFilePath = dstFilePathBox.getText().toString();
+                        if (srcFilePath.endsWith("/") || dstFilePath.endsWith("/")) {
                             Toast.makeText(getApplicationContext(), "ファイルを指定してください", Toast.LENGTH_SHORT).show();
                             return;
                         }
                         try {
-                            String result = String.valueOf(mUtilService.copyFile(fromPath, toPath));
+                            String result = String.valueOf(mUtilService.copyFile(srcFilePath, dstFilePath));
                             Toast.makeText(getApplicationContext(), "実行結果：" + result, Toast.LENGTH_LONG).show();
                         } catch (RemoteException ignored) {
                         }
@@ -131,12 +137,12 @@ public class UtilTester extends Activity {
                 findViewById(R.id.btn_deleteFile).setOnClickListener(view -> {
                     setContentView(R.layout.layout_deletefile);
 
-                    // deleteFile(file)
+                    // deleteFile(path)
                     findViewById(R.id.exec).setOnClickListener(view17 -> {
-                        EditText fileBox = findViewById(R.id.deleteFile_file);
-                        String filePath = fileBox.getText().toString();
+                        EditText pathBox = findViewById(R.id.deleteFile_path);
+                        String path = pathBox.getText().toString();
                         try {
-                            String result = String.valueOf(mUtilService.deleteFile(filePath));
+                            String result = String.valueOf(mUtilService.deleteFile(path));
                             Toast.makeText(getApplicationContext(), "実行結果：" + result, Toast.LENGTH_LONG).show();
                         } catch (RemoteException ignored) {
                         }
@@ -150,12 +156,12 @@ public class UtilTester extends Activity {
                 findViewById(R.id.btn_existsFile).setOnClickListener(view -> {
                     setContentView(R.layout.layout_existsfile);
 
-                    // existsFile(file)
+                    // existsFile(path)
                     findViewById(R.id.exec).setOnClickListener(view19 -> {
-                        EditText fileBox = findViewById(R.id.existsFile_file);
-                        String filePath = fileBox.getText().toString();
+                        EditText pathBox = findViewById(R.id.existsFile_path);
+                        String path = pathBox.getText().toString();
                         try {
-                            String result = String.valueOf(mUtilService.existsFile(filePath));
+                            String result = String.valueOf(mUtilService.existsFile(path));
                             Toast.makeText(getApplicationContext(), "実行結果：" + result, Toast.LENGTH_LONG).show();
                         } catch (RemoteException ignored) {
                         }
@@ -169,16 +175,12 @@ public class UtilTester extends Activity {
                 findViewById(R.id.btn_getCanonicalExternalPath).setOnClickListener(view -> {
                     setContentView(R.layout.layout_getcanonicalexternalpath);
 
-                    // getCanonicalExternalPath(path)
+                    // getCanonicalExternalPath(linkPath)
                     findViewById(R.id.exec).setOnClickListener(view111 -> {
-                        EditText fileBox = findViewById(R.id.getCanonicalExternalPath_path);
-                        String filePath = fileBox.getText().toString();
-                        if (filePath.isEmpty()) {
-                            Toast.makeText(getApplicationContext(), "ファイルを指定してください", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
+                        EditText linkPathBox = findViewById(R.id.getCanonicalExternalPath_linkPath);
+                        String linkPath = linkPathBox.getText().toString();
                         try {
-                            String result = String.valueOf(mUtilService.getCanonicalExternalPath(filePath));
+                            String result = String.valueOf(mUtilService.getCanonicalExternalPath(linkPath));
                             Toast.makeText(getApplicationContext(), "実行結果：" + result, Toast.LENGTH_LONG).show();
                         } catch (RemoteException ignored) {
                         }
@@ -264,18 +266,18 @@ public class UtilTester extends Activity {
                 findViewById(R.id.btn_makeDir).setOnClickListener(view -> {
                     setContentView(R.layout.layout_makedir);
 
-                    // makeDir(from, to)
+                    // makeDir(path, dirname)
                     findViewById(R.id.exec).setOnClickListener(view118 -> {
-                        EditText toBox = findViewById(R.id.makeDir_path);
-                        EditText nameBox = findViewById(R.id.makeDir_name);
-                        String toPath = toBox.getText().toString();
-                        String name = nameBox.getText().toString();
-                        if (name.startsWith("/") || name.endsWith("/")) {
+                        EditText pathBox = findViewById(R.id.makeDir_path);
+                        EditText dirnameBox = findViewById(R.id.makeDir_dirname);
+                        String path = pathBox.getText().toString();
+                        String dirname = dirnameBox.getText().toString();
+                        if (dirname.startsWith("/") || dirname.endsWith("/")) {
                             Toast.makeText(getApplicationContext(), "正しい名前を指定してください", Toast.LENGTH_SHORT).show();
                             return;
                         }
                         try {
-                            String result = String.valueOf(mUtilService.makeDir(toPath, name));
+                            String result = String.valueOf(mUtilService.makeDir(path, dirname));
                             Toast.makeText(getApplicationContext(), "実行結果：" + result, Toast.LENGTH_LONG).show();
                         } catch (RemoteException ignored) {
                         }
@@ -298,16 +300,16 @@ public class UtilTester extends Activity {
                 findViewById(R.id.btn_setDefaultPreferredHomeApp).setOnClickListener(view -> {
                     setContentView(R.layout.layout_setdefaultpreferredhomeapp);
 
-                    // setDefaultPreferredHomeApp(pkgId)
+                    // setDefaultPreferredHomeApp(packageName)
                     findViewById(R.id.exec).setOnClickListener(view120 -> {
-                        EditText pkgBox = findViewById(R.id.setDefaultPreferredHomeApp_package);
-                        String pkgId = pkgBox.getText().toString();
-                        if (pkgId.isEmpty()) {
+                        EditText packageNameBox = findViewById(R.id.setDefaultPreferredHomeApp_packageName);
+                        String packageName = packageNameBox.getText().toString();
+                        if (packageName.isEmpty()) {
                             Toast.makeText(getApplicationContext(), "パッケージIDを指定してください", Toast.LENGTH_LONG).show();
                             return;
                         }
                         try {
-                            mUtilService.setDefaultPreferredHomeApp(pkgId);
+                            mUtilService.setDefaultPreferredHomeApp(packageName);
                         } catch (RemoteException ignored) {
                         }
                     });

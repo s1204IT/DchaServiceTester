@@ -21,7 +21,7 @@
             android:textSize="26sp" />
 
         <EditText
-            android:id="@+id/uninstallApp_pkgId"
+            android:id="@+id/uninstallApp_packageName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -29,13 +29,13 @@
             android:hint="パッケージID" />
 
         <EditText
-            android:id="@+id/uninstallApp_flag"
+            android:id="@+id/uninstallApp_flags"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:inputType="number"
-            android:hint="フラグ (未入力の場合は&quot;1&quot;)" />
+            android:hint="データ保持フラグ (未入力の場合は&quot;0&quot;)" />
 
         <Button
             android:id="@+id/exec"
