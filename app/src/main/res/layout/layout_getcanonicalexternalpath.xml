@@ -26,7 +26,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:hint="取得するディレクトリのパス" />
+            android:hint="取得するディレクトリのパス"
+            android:text="/storage/sdcard1/" />
 
         <Button
             android:id="@+id/exec"

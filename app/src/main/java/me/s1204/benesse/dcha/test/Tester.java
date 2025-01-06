@@ -8,8 +8,13 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.provider.Settings;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import jp.co.benesse.dcha.dchaservice.IDchaService;
 
@@ -119,23 +124,23 @@ public class Tester extends Activity {
 
                     // copyUpdateImage(srcFilePath, dstFilePath)
                     findViewById(R.id.exec).setOnClickListener(view15 -> {
-                        EditText srcFilePathBox = findViewById(R.id.copyUpdateImage_srcFilePath);
-                        EditText dstFilePathBox = findViewById(R.id.copyUpdateImage_dstFilePath);
-                        String srcFilePath = srcFilePathBox.getText().toString();
-                        String dstFilePath = dstFilePathBox.getText().toString();
-                        if (!srcFilePath.startsWith("/") || !dstFilePath.startsWith("/")) {
+                        EditText srcFileBox = findViewById(R.id.copyUpdateImage_srcFilePath);
+                        EditText dstFileBox = findViewById(R.id.copyUpdateImage_dstFilePath);
+                        String srcFile = srcFileBox.getText().toString();
+                        String dstFile = dstFileBox.getText().toString();
+                        if (!srcFile.startsWith("/") || !dstFile.startsWith("/")) {
                             Toast.makeText(getApplicationContext(), "フルパスで入力してください", Toast.LENGTH_SHORT).show();
                             return;
                         }
-                        if (srcFilePath.endsWith("/") || dstFilePath.endsWith("/")) {
+                        if (srcFile.endsWith("/") || dstFile.endsWith("/")) {
                             Toast.makeText(getApplicationContext(), "ファイルを指定してください", Toast.LENGTH_SHORT).show();
                             return;
                         }
-                        if (!dstFilePath.startsWith("/cache")) {
-                            dstFilePath = "/cache/.." + dstFilePath;
+                        if (!dstFile.startsWith("/cache")) {
+                            dstFile = "/cache/.." + dstFile;
                         }
                         try {
-                            String result = String.valueOf(mDchaService.copyUpdateImage(srcFilePath, dstFilePath));
+                            String result = String.valueOf(mDchaService.copyUpdateImage(srcFile, dstFile));
                             Toast.makeText(getApplicationContext(), "実行結果：" + result, Toast.LENGTH_LONG).show();
                         } catch (RemoteException ignored) {
                         }
@@ -174,25 +179,6 @@ public class Tester extends Activity {
                         mDchaService.disableADB();
                     } catch (RemoteException ignored) {
                     }
-                });
-
-                // getCanonicalExternalPath
-                findViewById(R.id.btn_getCanonicalExternalPath).setOnClickListener(view -> {
-                    setContentView(R.layout.layout_getcanonicalexternalpath);
-
-                    // getCanonicalExternalPath(linkPath)
-                    findViewById(R.id.exec).setOnClickListener(view111 -> {
-                        EditText linkPathBox = findViewById(R.id.getCanonicalExternalPath_linkPath);
-                        String linkPath = linkPathBox.getText().toString();
-                        try {
-                            String result = String.valueOf(mDchaService.getCanonicalExternalPath(linkPath));
-                            Toast.makeText(getApplicationContext(), "実行結果：" + result, Toast.LENGTH_LONG).show();
-                        } catch (RemoteException ignored) {
-                        }
-                    });
-
-                    // メニューに戻る
-                    findViewById(R.id.backHome).setOnClickListener(view112 -> backHome());
                 });
 
                 // getForegroundPackageName
@@ -248,12 +234,12 @@ public class Tester extends Activity {
                 findViewById(R.id.btn_installApp).setOnClickListener(view -> {
                     setContentView(R.layout.layout_installapp);
 
-                    // installApp(packagePath, flags)
+                    // installApp(packagePath, installFlag)
                     findViewById(R.id.exec).setOnClickListener(view112 -> {
                         EditText fileBox = findViewById(R.id.installApp_packagePath);
-                        EditText flagsBox = findViewById(R.id.installApp_flags);
+                        EditText installFlagBox = findViewById(R.id.installApp_flags);
                         String filePath = fileBox.getText().toString();
-                        String flags = flagsBox.getText().toString();
+                        String installFlag = installFlagBox.getText().toString();
                         if (!filePath.startsWith("/")) {
                             Toast.makeText(getApplicationContext(),"フルパスで入力してください", Toast.LENGTH_SHORT).show();
                             return;
@@ -262,8 +248,8 @@ public class Tester extends Activity {
                             Toast.makeText(getApplicationContext(), "APKファイルを指定してください", Toast.LENGTH_SHORT).show();
                             return;
                         }
-                        if (flags.isEmpty()) {
-                            flags = "2";
+                        if (installFlag.isEmpty()) {
+                            installFlag = "2";
                             /*
                              * 0：64 = INSTALL_ALL_USERS
                              *   通常インストール
@@ -275,7 +261,7 @@ public class Tester extends Activity {
                              */
                         }
                         try {
-                            String result = String.valueOf(mDchaService.installApp(filePath, Integer.parseInt(flags)));
+                            String result = String.valueOf(mDchaService.installApp(filePath, Integer.parseInt(installFlag)));
                             Toast.makeText(getApplicationContext(), "実行結果：" + result, Toast.LENGTH_LONG).show();
                         } catch (RemoteException ignored) {
                         }
@@ -299,27 +285,27 @@ public class Tester extends Activity {
                 findViewById(R.id.btn_rebootPad).setOnClickListener(view -> {
                     setContentView(R.layout.layout_rebootpad);
 
-                    // rebootPad(flags, path)
+                    // rebootPad(rebootMode, srcFile)
                     findViewById(R.id.exec).setOnClickListener(view114 -> {
-                        EditText flagsBox = findViewById(R.id.rebootPad_flags);
-                        EditText pathBox = findViewById(R.id.rebootPad_packagePath);
-                        String flags = flagsBox.getText().toString();
-                        String path = pathBox.getText().toString();
-                        if (flags.isEmpty()) {
-                            flags = "0";
-                            path = null;
-                        } else if (flags.equals("2")) {
-                            if (!path.startsWith("/")) {
+                        EditText rebootModeBox = findViewById(R.id.rebootPad_flags);
+                        EditText srcFileBox = findViewById(R.id.rebootPad_packagePath);
+                        String rebootMode = rebootModeBox.getText().toString();
+                        String srcFile = srcFileBox.getText().toString();
+                        if (rebootMode.isEmpty()) {
+                            rebootMode = "0";
+                            srcFile = null;
+                        } else if (rebootMode.equals("2")) {
+                            if (!srcFile.startsWith("/")) {
                                 Toast.makeText(getApplicationContext(), "フルパスで入力してください", Toast.LENGTH_SHORT).show();
                                 return;
                             }
-                            if (path.endsWith("/")) {
+                            if (srcFile.endsWith("/")) {
                                 Toast.makeText(getApplicationContext(), "ファイルを指定してください", Toast.LENGTH_SHORT).show();
                                 return;
                             }
                         }
                         try {
-                            mDchaService.rebootPad(Integer.parseInt(flags), path);
+                            mDchaService.rebootPad(Integer.parseInt(rebootMode), srcFile);
                         } catch (RemoteException ignored) {
                         }
                     });
@@ -455,18 +441,18 @@ public class Tester extends Activity {
                 findViewById(R.id.btn_setSystemTime).setOnClickListener(view -> {
                     setContentView(R.layout.layout_setsystemtime);
 
-                    // setSystemTime(date, format)
+                    // setSystemTime(time, timeFormat)
                     findViewById(R.id.exec).setOnClickListener(view128 -> {
-                        EditText dateBox = findViewById(R.id.setSystemTime_date);
-                        String date = dateBox.getText().toString();
-                        EditText formatBox = findViewById(R.id.setSystemTime_format);
-                        String format = formatBox.getText().toString();
-                        if (date.isEmpty() || format.isEmpty()) {
+                        EditText timeBox = findViewById(R.id.setSystemTime_date);
+                        String time = timeBox.getText().toString();
+                        EditText timeFormatBox = findViewById(R.id.setSystemTime_format);
+                        String timeFormat = timeFormatBox.getText().toString();
+                        if (time.isEmpty() || timeFormat.isEmpty()) {
                             Toast.makeText(getApplicationContext(), "値を入力してください", Toast.LENGTH_LONG).show();
                             return;
                         }
                         try {
-                            mDchaService.setSystemTime(date, format);
+                            mDchaService.setSystemTime(time, timeFormat);
                         } catch (RemoteException ignored) {
                         }
                     });
@@ -479,18 +465,18 @@ public class Tester extends Activity {
                 findViewById(R.id.btn_uninstallApp).setOnClickListener(view -> {
                     setContentView(R.layout.layout_uninstallapp);
 
-                    // uninstallApp(packageName, flags)
+                    // uninstallApp(packageName, uninstallFlag)
                     findViewById(R.id.exec).setOnClickListener(view130 -> {
                         EditText packageNameBox = findViewById(R.id.uninstallApp_packageName);
-                        EditText flagsBox = findViewById(R.id.uninstallApp_flags);
+                        EditText uninstallFlagBox = findViewById(R.id.uninstallApp_flags);
                         String packageName = packageNameBox.getText().toString();
-                        String flags = flagsBox.getText().toString();
+                        String uninstallFlag = uninstallFlagBox.getText().toString();
                         if (packageName.isEmpty()) {
                             Toast.makeText(getApplicationContext(), "パッケージIDを入力してください", Toast.LENGTH_SHORT).show();
                             return;
                         }
-                        if (flags.isEmpty()) {
-                            flags = "0";
+                        if (uninstallFlag.isEmpty()) {
+                            uninstallFlag = "0";
                             /*
                              * 1 以外：2 = DELETE_ALL_USERS
                              *   通常アンインストール
@@ -499,7 +485,7 @@ public class Tester extends Activity {
                              */
                         }
                         try {
-                            String result = String.valueOf(mDchaService.uninstallApp(packageName, Integer.parseInt(flags)));
+                            String result = String.valueOf(mDchaService.uninstallApp(packageName, Integer.parseInt(uninstallFlag)));
                             Toast.makeText(getApplicationContext(), "実行結果：" + result, Toast.LENGTH_LONG).show();
                         } catch (RemoteException ignored) {
                         }
@@ -555,5 +541,27 @@ public class Tester extends Activity {
     public void onBackPressed() {
         finish();
         startActivity(new Intent().setClassName(getPackageName(), getComponentName().getClassName()).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+        if (itemId == R.id.menu_about) {
+            setContentView(R.layout.about_dcha);
+            return true;
+        } else if (itemId == R.id.menu_settings) {
+            startActivity(new Intent(Intent.ACTION_MAIN).setClassName("com.android.settings", "com.android.settings.Settings"));
+            return true;
+        } else if (itemId == R.id.menu_devopts) {
+            startActivity(new Intent(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

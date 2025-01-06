@@ -26,7 +26,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:hint="検証するファイルのフルパス" />
+            android:hint="検証するファイルのフルパス"
+            android:text="/storage/sdcard1/update.zip" />
 
         <Button
             android:id="@+id/exec"

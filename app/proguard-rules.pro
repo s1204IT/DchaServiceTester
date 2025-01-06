@@ -1,2 +1,4 @@
 -keep class jp.co.benesse.dcha.dchaservice.IDchaService
 -keep class jp.co.benesse.dcha.dchautilservice.IDchaUtilService
+-keepattributes LineNumberTable,SourceFile
+-renamesourcefileattribute SourceFile

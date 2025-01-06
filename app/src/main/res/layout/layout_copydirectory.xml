@@ -26,7 +26,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:hint="ディレクトリのコピー元フルパス" />
+            android:hint="ディレクトリのコピー元フルパス"
+            android:text="/storage/sdcard1/" />
 
         <EditText
             android:id="@+id/copyDirectory_dstDirPath"
@@ -34,15 +35,16 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:hint="ディレクトリのコピー先フルパス" />
+            android:hint="ディレクトリのコピー先フルパス"
+            android:text="/storage/sdcard1/" />
 
-        <EditText
+        <Spinner
             android:id="@+id/copyDirectory_makeTopDir"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:hint="makeTopDir (true/false)" />
+            android:entries="@array/bool" />
 
         <Button
             android:id="@+id/exec"

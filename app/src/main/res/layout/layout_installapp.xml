@@ -35,7 +35,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:inputType="number"
-            android:hint="ダウングレードフラグ (未入力の場合は&quot;2&quot;)" />
+            android:hint="上書きフラグ (未入力の場合は&quot;2&quot;)" />
 
         <Button
             android:id="@+id/exec"

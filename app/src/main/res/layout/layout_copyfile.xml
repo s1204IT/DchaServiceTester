@@ -26,7 +26,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:hint="ファイルのコピー元パス" />
+            android:hint="ファイルのコピー元パス"
+            android:text="/storage/sdcard1/" />
 
         <EditText
             android:id="@+id/copyFile_dstFilePath"
@@ -34,7 +35,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:hint="ファイルのコピー先パス" />
+            android:hint="ファイルのコピー先パス"
+            android:text="/storage/sdcard1/" />
 
         <Button
             android:id="@+id/exec"

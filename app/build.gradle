@@ -3,15 +3,16 @@ plugins {
 }
 
 android {
-    namespace 'me.s1204.benesse.dcha.test'
-    compileSdk 35
+    namespace = 'me.s1204.benesse.dcha.test'
+    compileSdk = 35
 
     defaultConfig {
-        minSdk 22
-        targetSdk 35
-        versionCode 8
-        versionName "1.3.2"
+        minSdk = 22
+        targetSdk = 35
+        versionCode = 9
+        versionName = "1.4.0"
         proguardFiles += 'proguard-rules.pro'
+        multiDexEnabled = false
     }
 
     signingConfigs {
@@ -21,24 +22,15 @@ android {
             keyAlias 'android'
             keyPassword 'android'
         }
-        release {
-            storeFile file('release.jks')
-            storePassword System.getenv('STORE_PASSWORD')
-            keyAlias System.getenv('KEY_ALIAS')
-            keyPassword System.getenv('KEY_PASSWORD')
-        }
     }
 
     buildTypes {
         configureEach {
-            signingConfig signingConfigs.android
+            signingConfig = signingConfigs.android
         }
         release {
-            minifyEnabled true
-            shrinkResources true
-            if (file('release.jks').exists()) {
-                signingConfig signingConfigs.release
-            }
+            minifyEnabled = true
+            shrinkResources = true
         }
     }
 
@@ -48,14 +40,15 @@ android {
     }
 
     buildFeatures {
-        buildConfig false
-        compose false
+        buildConfig = false
     }
 
     lintOptions {
-        ignore 'HardcodedText', 'InefficientWeight', 'Autofill', 'TextFields'
+        abortOnError = false
+        ignore 'HardcodedText', 'InefficientWeight', 'Autofill', 'TextFields', 'Deprecated', 'TooManyViews'
     }
 }
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 }

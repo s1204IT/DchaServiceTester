@@ -9,8 +9,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.provider.Settings;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import java.util.Arrays;
 
@@ -29,6 +35,7 @@ public class UtilTester extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.util);
 
         // DchaUtilService をバインド
         try {
@@ -45,8 +52,6 @@ public class UtilTester extends Activity {
                     finishAndRemoveTask();
                 }
             }, Context.BIND_AUTO_CREATE)) {
-
-                setContentView(R.layout.util);
 
                 // clearDefaultPreferredApp
                 findViewById(R.id.btn_clearDefaultPreferredApp).setOnClickListener(view -> {
@@ -78,22 +83,16 @@ public class UtilTester extends Activity {
                     findViewById(R.id.exec).setOnClickListener(view13 -> {
                         EditText srcDirPathBox = findViewById(R.id.copyDirectory_srcDirPath);
                         EditText dstDirPathBox = findViewById(R.id.copyDirectory_dstDirPath);
-                        EditText makeTopDirBox = findViewById(R.id.copyDirectory_makeTopDir);
+                        Spinner makeTopDirBox = findViewById(R.id.copyDirectory_makeTopDir);
                         String srcDirPath = srcDirPathBox.getText().toString();
                         String dstDirPath = dstDirPathBox.getText().toString();
-                        String makeTopDir = makeTopDirBox.getText().toString();
-                        if (makeTopDir.isEmpty()) {
-                            makeTopDir = "false";
-                            /*
-                             * true ：フォルダ自体をコピー
-                             *   srcDir の最終ディレクトリ名で新しいフォルダを作成し、中身をコピー
-                             * false：フォルダの中身のみコピー
-                             *   srcDir の中身をコピー
-                             */
-                        } else if (!makeTopDir.equals("true") && !makeTopDir.equals("false")) {
-                            Toast.makeText(getApplicationContext(), "真理値を正しく入力してください", Toast.LENGTH_LONG).show();
-                            return;
-                        }
+                        String makeTopDir = makeTopDirBox.getSelectedItem().toString();
+                        /*
+                         * true ：フォルダ自体をコピー
+                         *   srcDir の最終ディレクトリ名で新しいフォルダを作成し、中身をコピー
+                         * false：フォルダの中身のみコピー
+                         *   srcDir の中身をコピー
+                         */
                         try {
                             String result = String.valueOf(mUtilService.copyDirectory(srcDirPath, dstDirPath, Boolean.parseBoolean(makeTopDir)));
                             Toast.makeText(getApplicationContext(), "実行結果：" + result, Toast.LENGTH_LONG).show();
@@ -374,5 +373,27 @@ public class UtilTester extends Activity {
     public void onBackPressed() {
         finish();
         startActivity(new Intent().setClassName(getPackageName(), getComponentName().getClassName()).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+        if (itemId == R.id.menu_about) {
+            setContentView(R.layout.about_util);
+            return true;
+        } else if (itemId == R.id.menu_settings) {
+            startActivity(new Intent(Intent.ACTION_MAIN).setClassName("com.android.settings", "com.android.settings.Settings"));
+            return true;
+        } else if (itemId == R.id.menu_devopts) {
+            startActivity(new Intent(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

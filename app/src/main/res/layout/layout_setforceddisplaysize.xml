@@ -26,8 +26,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
+            android:hint="横"
             android:inputType="number"
-            android:hint="横" />
+            android:text="1280" />
 
         <EditText
             android:id="@+id/setForcedDisplaySize_height"
@@ -35,8 +36,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
+            android:hint="縦"
             android:inputType="number"
-            android:hint="縦" />
+            android:text="800" />
 
         <Button
             android:id="@+id/exec"

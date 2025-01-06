@@ -26,7 +26,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:hint="作成するディレクトリのパス" />
+            android:hint="作成するディレクトリのパス"
+            android:text="/storage/sdcard1/" />
 
         <EditText
             android:id="@+id/makeDir_dirname"

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_about"
+        android:showAsAction="never"
+        android:title="解説を見る" />
+    <item
+        android:id="@+id/menu_settings"
+        android:showAsAction="never"
+        android:title="設定アプリ" />
+    <item
+        android:id="@+id/menu_devopts"
+        android:showAsAction="never"
+        android:title="開発者向けオプション" />
+</menu>

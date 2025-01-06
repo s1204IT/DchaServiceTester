@@ -26,7 +26,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:hint="日時の値" />
+            android:hint="日時の値"
+            android:text="2016/02/01 24:01:00.000" />
 
         <EditText
             android:id="@+id/setSystemTime_format"
@@ -34,7 +35,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:hint="日時のフォーマット" />
+            android:hint="日時のフォーマット"
+            android:text="yyyy/MM/dd kk:mm:ss.SSS" />
 
         <Button
             android:id="@+id/exec"
