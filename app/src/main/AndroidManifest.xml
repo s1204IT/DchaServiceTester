@@ -14,7 +14,8 @@
         <activity
             android:name=".Tester"
             android:exported="true"
-            android:launchMode="singleInstance">
+            android:launchMode="singleInstance"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -28,7 +29,8 @@
             android:exported="true"
             android:icon="@mipmap/ic_launcher_util"
             android:label="UtilService Tester"
-            android:launchMode="singleInstance">
+            android:launchMode="singleInstance"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

@@ -9,8 +9,8 @@ android {
     defaultConfig {
         minSdk = 22
         targetSdk = 35
-        versionCode = 9
-        versionName = "1.4.0"
+        versionCode = 10
+        versionName = "1.4.1"
         proguardFiles += 'proguard-rules.pro'
         multiDexEnabled = false
     }
@@ -45,7 +45,7 @@ android {
 
     lintOptions {
         abortOnError = false
-        ignore 'HardcodedText', 'InefficientWeight', 'Autofill', 'TextFields', 'Deprecated', 'TooManyViews'
+        ignore 'HardcodedText', 'InefficientWeight', 'Autofill', 'TextFields', 'Deprecated', 'TooManyViews', 'DiscouragedApi'
     }
 }
 

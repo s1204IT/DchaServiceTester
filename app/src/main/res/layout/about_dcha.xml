@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="端末が su を十呼応できるかどうかを確認する関数。\nCT3 以降は常に false を返す。"
+                android:text="端末が su を実行できるかどうかを確認する関数。\nCT3 以降は常に false を返す。"
                 android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -143,7 +143,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="SDカード内でのファイルのコピーを行います。\n引数は両方ともフルパスです。\nコピー先のみディレクトリでも可能。\n内部ストレージには使用できません。\nCT3 は false のみ返します。\nファイルモードとしては、Readable, Writable, Executable を全て許可しているのですが、Android システムの制約上、Other の RW は昇格されません。"
+                android:text="SDカード内でのファイルのコピーを行います。\nコピー先のみディレクトリでも可能。\n内部ストレージには使用できません。\nCT3 は false のみ返します。\nファイルモードとしては、Readable, Writable, Executable を全て許可しているのですが、Android システムの制約上、Other の RW は昇格されません。"
                 android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -178,7 +178,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="システム権限でファイルのコピーを行います。\n引数は両方ともフルパスです。\nコピー先は /cache から始まる必要がありますが、/cache/../ と相対パスが使えるので、システム権限でファイルの操作が行えます。\nSDカードを跨ぐこともできます。\n本来は、ファームウェアアップデートファイル (update.zip) のコピーに用いられる関数です。"
+                android:text="システム権限でファイルのコピーを行います。\nコピー先は /cache から始まる必要がありますが、/cache/../ と相対パスが使えるので、システム権限でファイルの操作が行えます。\nSDカードを跨ぐこともできます。\n本来は、ファームウェアアップデートファイル (update.zip) のコピーに用いられる関数です。"
                 android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -213,7 +213,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="SDカード内でのファイルまたはディレクトリの削除を行います。\n引数はフルパスです。\n内部ストレージには使用できません。\nCT3 は false のみ返します。"
+                android:text="SDカード内でのファイルまたはディレクトリの削除を行います。\n内部ストレージには使用できません。\nCT3 は false のみ返します。"
                 android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -283,7 +283,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="フォアグランドで実行しているアプリのパッケージ名を返します。\n例えば、このアプリを開いている時に実行すると、me.s1204.benesse.dcha.test が返ってきます。"
+                android:text="フォアグランドで実行しているアプリのパッケージ名を返します。"
                 android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -423,7 +423,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="APK ファイルを用いてアプリのインストールを行います。\nAPK のパスはフルパスです。\nフラグについては以下の通りです：\n・0: 通常インストール：INSTALL_ALL_USERS\n・1: 上書き(アップデート等)を許可：INSTALL_ALL_USERS | INSTALL_REPLACE_EXISTING\n　　→ adb install の -r オプションに相当。\n・2: ダウングレードを許可(debuggable に限る)：INSTALL_ALL_USERS | INSTALL_REPLACE_EXISTING | INSTALL_ALLOW_DOWNGRADE\n　　→ adb install の -t オプションに相当"
+                android:text="APK ファイルを用いてアプリのインストールを行います。\nフラグについては以下の通りです：\n・0: 通常インストール：INSTALL_ALL_USERS\n・1: 上書き(アップデート等)を許可：INSTALL_ALL_USERS | INSTALL_REPLACE_EXISTING\n　　→ adb install の -r オプションに相当。\n・2: ダウングレードを許可(debuggable に限る)：INSTALL_ALL_USERS | INSTALL_REPLACE_EXISTING | INSTALL_ALLOW_DOWNGRADE\n　　→ adb install の -t オプションに相当"
                 android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -773,7 +773,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="ファームウェアアップデートファイルの署名が正しいかどうかを確認する関数。パスはフルパスで指定。CTX 以降は常に true を返す。"
+                android:text="ファームウェアアップデートファイルの署名が正しいかどうかを確認する関数。\nCTX 以降は常に true を返す。"
                 android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
