@@ -12,6 +12,29 @@
         android:label="DchaService Tester">
 
         <activity
+            android:name=".About"
+            android:exported="true"
+            android:label="About DchaService"
+            android:launchMode="singleInstance">
+            <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".AboutUtil"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_util"
+            android:label="About UtilService"
+            android:launchMode="singleInstance">
+            <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name=".Tester"
             android:exported="true"
             android:launchMode="singleInstance"
