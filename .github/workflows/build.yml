@@ -40,6 +40,11 @@ jobs:
           cp -f app/build/outputs/apk/debug/app-debug.apk ${{ env.repo }}-${{ env.version }}@${{ env.commit }}.apk
           cp -f app/build/outputs/bundle/debug/app-debug.aab ${{ env.repo }}-${{ env.version }}@${{ env.commit }}.aab
 
+      - name: Make App Bundle
+        run: |
+          #curl $(echo $(curl -s https://api.github.com/repos/google/bundletool/releases/latest) | jq -r ".assets | .[].browser_download_url") -4 -sL -o 'bundletool.jar'
+          java -jar bundletool.jar build-apks --ks app/android.jks --ks-pass pass:android --ks-key-alias android --bundle ${{ env.repo }}-${{ env.version }}@${{ env.commit }}.aab --output ${{ env.repo }}-${{ env.version }}@${{ env.commit }}.apks
+
       - name: Attest
         uses: actions/attest-build-provenance@v1
         with:
