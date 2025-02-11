@@ -248,7 +248,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="ADB = USB デバッグを無効化します。\nSecure 変数テーブルの adb_enabled の値を 0 にします。"
+                android:text="ADB = USB デバッグを無効化します。\nSecure ネームスペースの adb_enabled の値を 0 にします。"
                 android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -318,7 +318,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="DchaService の SharedPreference 内の DigichalizedStatus の値を返します。\n通常は System 変数テーブルの dcha_state の値と同じです。"
+                android:text="DchaService の SharedPreference 内の DigichalizedStatus の値を返します。\n通常は System ネームスペースの dcha_state の値と同じです。"
                 android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -668,7 +668,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="DchaService の SharedPreference 内の DigichalizedStatus の値を設定します。\n同時に、System 変数テーブルの dcha_state の値も設定します。\n値の詳細は次の通りです：\n・0: DIGICHALIZE_STATUS_UNDIGICHALIZE：学習環境のセットアップが行われていない状態\n・1: DIGICHALIZE_STATUS_DIGICHARIZING：セットアップが開始された状態\n・2: DIGICHALIZE_STATUS_DIGICHARIZING_DL_COMPLETE：セットアップ中だが、学習環境に必要なアプリ等がダウンロードされた状態\n・3: DIGICHALIZE_STATUS_DIGICHALIZED：学習環境にセットアップされた状態"
+                android:text="DchaService の SharedPreference 内の DigichalizedStatus の値を設定します。\n同時に、System ネームスペースの dcha_state の値も設定します。\n値の詳細は次の通りです：\n・0: DIGICHALIZE_STATUS_UNDIGICHALIZE：学習環境のセットアップが行われていない状態\n・1: DIGICHALIZE_STATUS_DIGICHARIZING：セットアップが開始された状態\n・2: DIGICHALIZE_STATUS_DIGICHARIZING_DL_COMPLETE：セットアップ中だが、学習環境に必要なアプリ等がダウンロードされた状態\n・3: DIGICHALIZE_STATUS_DIGICHALIZED：学習環境にセットアップされた状態"
                 android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>

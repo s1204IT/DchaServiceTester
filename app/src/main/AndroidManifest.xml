@@ -49,6 +49,27 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".About"
+            android:exported="true"
+            android:label="About DchaService"
+            android:launchMode="singleInstance">
+            <intent-filter>
+                 <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".AboutUtil"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_util"
+            android:label="About UtilService"
+            android:launchMode="singleInstance">
+            <intent-filter>
+                 <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

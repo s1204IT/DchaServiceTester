@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="SDカード内でのファイルのコピーを行います。\n引数は両方ともフルパスです。\nコピー先のみディレクトリでも可能。\n内部ストレージには使用できません。\nファイルモードとしては、Readable, Writable, Executable を全て許可しているのですが、Android システムの制約上、Other の RW は昇格されません。"
+                android:text="SDカード内でのファイルのコピーを行います。\nコピー先のみディレクトリでも可能。\n内部ストレージには使用できません。\nファイルモードとしては、Readable, Writable, Executable を全て許可しているのですが、Android システムの制約上、Other の RW は昇格されません。"
                 android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -108,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="SDカード内でのディレクトリ直下のファイルのコピーを行います。\n引数は両方ともフルパスです。\n内部ストレージには使用できません。\nmakeTopDir を true にすると、フォルダごとコピーします。\nファイルモードとしては、Readable, Writable, Executable を全て許可しているのですが、Android システムの制約上、Other の RW は昇格されません。"
+                android:text="SDカード内でのディレクトリ直下のファイルのコピーを行います。\n内部ストレージには使用できません。\nmakeTopDir を true にすると、フォルダごとコピーします。\nファイルモードとしては、Readable, Writable, Executable を全て許可しているのですが、Android システムの制約上、Other の RW は昇格されません。"
                 android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -143,7 +143,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="SDカード内でのファイルの削除ーを行います。\n引数はフルパスです。\nディレクトリでも可能。\n内部ストレージには使用できません。"
+                android:text="SDカード内でのファイルの削除を行います。\nディレクトリでも可能。\n内部ストレージには使用できません。"
                 android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -178,7 +178,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="SDカード内でファイルが存在するかどうかの確認を行います。\n引数はフルパスです。\nディレクトリでも可能。\n内部ストレージには使用できません。"
+                android:text="SDカード内でファイルが存在するかどうかの確認を行います。\nディレクトリでも可能。\n内部ストレージには使用できません。"
                 android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -493,7 +493,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="画面の解像度を強制的に設定します。\n ただし、bc:compatscreen で許可されている値しか設定できません：\n・[1920, 1200]: 0\n・[1024, 768]: 1\n・[1280, 800]: 2"
+                android:text="画面の解像度を強制的に設定します。\nただし、bc:compatscreen で許可されている値しか設定できません：\n・[1920, 1200]: 0\n・[1024, 768]: 1\n・[1280, 800]: 2"
                 android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>

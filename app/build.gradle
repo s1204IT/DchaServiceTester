@@ -9,8 +9,8 @@ android {
     defaultConfig {
         minSdk = 22
         targetSdk = 35
-        versionCode = 10
-        versionName = "1.4.1"
+        versionCode = 12
+        versionName = "1.4.3"
         proguardFiles += 'proguard-rules.pro'
         multiDexEnabled = false
     }
@@ -31,6 +31,18 @@ android {
         release {
             minifyEnabled = true
             shrinkResources = true
+        }
+    }
+
+    bundle {
+        language {
+            enableSplit = true
+        }
+        density {
+            enableSplit = true
+        }
+        abi {
+            enableSplit = true
         }
     }
 
