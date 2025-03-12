@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:enabled="true"
+        android:icon="@android:drawable/ic_menu_search"
+        android:shortcutId="about_util"
+        android:shortcutShortLabel="@string/shortcut_label">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="me.s1204.benesse.dcha.test.AboutUtil"
+            android:targetPackage="me.s1204.benesse.dcha.test" />
+
+    </shortcut>
+</shortcuts>

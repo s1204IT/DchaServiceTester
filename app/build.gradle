@@ -9,8 +9,8 @@ android {
     defaultConfig {
         minSdk = 22
         targetSdk = 35
-        versionCode = 12
-        versionName = "1.4.3"
+        versionCode = 13
+        versionName = "1.5.0"
         proguardFiles += 'proguard-rules.pro'
         multiDexEnabled = false
     }
@@ -34,18 +34,6 @@ android {
         }
     }
 
-    bundle {
-        language {
-            enableSplit = true
-        }
-        density {
-            enableSplit = true
-        }
-        abi {
-            enableSplit = true
-        }
-    }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_21
         targetCompatibility JavaVersion.VERSION_21
@@ -62,5 +50,6 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation files('libs/DchaService.jar')
+    implementation files('libs/DchaUtilService.jar')
 }

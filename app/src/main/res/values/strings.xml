@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">DchaService Tester</string>
+    <string name="util">UtilService Tester</string>
+    <string name="about">About DchaService</string>
+    <string name="about_util">About UtilService</string>
+    <string name="shortcut_label">詳細</string>
     <string-array name="bool">
         <item>false</item>
         <item>true</item>
+    </string-array>
+    <string-array name="display_size">
+        <item>1920x1200</item>
+        <item>1024x768</item>
+        <item>1280x800</item>
     </string-array>
 </resources>
