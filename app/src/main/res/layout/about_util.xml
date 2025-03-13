@@ -406,7 +406,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="4dp"
-            android:text="boolean makeDir(String path)"
+            android:text="boolean makeDir(String path, String dirname)"
             android:textColor="@android:color/black"
             android:textSize="24sp" />
 
