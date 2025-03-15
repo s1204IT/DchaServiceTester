@@ -8,7 +8,7 @@
     <uses-permission android:name="jp.co.benesse.dcha.permission.ACCESS_SYSTEM" />
 
     <application
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name">
 
         <activity
@@ -30,7 +30,7 @@
         <activity
             android:name=".UtilTester"
             android:exported="true"
-            android:icon="@mipmap/ic_launcher_util"
+            android:icon="@drawable/ic_launcher_util"
             android:label="@string/util"
             android:launchMode="singleInstance"
             android:screenOrientation="landscape">
@@ -68,7 +68,7 @@
         <activity
             android:name=".AboutUtil"
             android:exported="true"
-            android:icon="@mipmap/ic_launcher_util"
+            android:icon="@drawable/ic_launcher_util"
             android:label="@string/about_util"
             android:launchMode="singleInstance">
             <intent-filter>

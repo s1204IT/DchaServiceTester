@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="セットアップを中断した際に呼び出される関数。\ndcha_state が 3 の時は実行をスルーする。\n・DchaDataBox のデータを削除\n・全てのユーザーアプリのアンインストール (uninstallApp)\n・dcha_state を 0 に設定"
+                android:text="セットアップを中断した際に呼び出される関数。\ndcha_state が 3 の時 または、\n/data/data/jp.co.benesse.dcha.dchaservice/update.log が存在する時は実行をスルーする。\n・DchaDataBox のデータを削除\n・全てのユーザーアプリのアンインストール\n・dcha_state を 0 に設定"
                 android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -108,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="指定されたパッケージの優先アクティビティマッピングを解除します。\n主にホームランチャーの設定に使用されます。\n例えば、Nova Launcher がランチャーとして設定されている状態で、com.teslacoilsw.launcher を引数に入れ実行すると、\n既定の状態が解除されるので、ホームを開くとランチャーの選択画面が出てきます。"
+                android:text="指定されたパッケージの優先アクティビティマッピングを解除します。\n主にホームランチャーの設定に使用されます。\n例えば、Nova Launcher がランチャーとして設定されている状態で、com.teslacoilsw.launcher を引数に入れ実行すると、\n既定の状態が解除されるので、ホームを開くとランチャーの選択画面が出てきます。\nホームランチャー以外の規定も解除されます。"
                 android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -423,7 +423,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="APK ファイルを用いてアプリのインストールを行います。\nフラグについては以下の通りです：\n・0: 通常インストール：INSTALL_ALL_USERS\n・1: 上書き(アップデート等)を許可：INSTALL_ALL_USERS | INSTALL_REPLACE_EXISTING\n　　→ adb install の -r オプションに相当。\n・2: ダウングレードを許可(debuggable に限る)：INSTALL_ALL_USERS | INSTALL_REPLACE_EXISTING | INSTALL_ALLOW_DOWNGRADE\n　　→ adb install の -t オプションに相当"
+                android:text="APK ファイルを用いてアプリのインストールを行います。\nフラグについては以下の通りです：\n・0: 通常インストール：INSTALL_ALL_USERS\n・1: 上書き(アップデート等)を許可：INSTALL_REPLACE_EXISTING\n　　→ pm install の -r オプションに相当。\n・2: 上書き＆ダウングレードを許可(debuggable に限る)：INSTALL_ALLOW_DOWNGRADE\n　　→ pm install の -t オプションに相当"
                 android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -493,7 +493,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="端末の電源管理をする関数。\n通常、文字列は null で構いません。\nフラグについては以下の通りです：\n・0: 通常通り再起動\n・1: 即初期化。バッテリー接続の有無関係無し\n・2: ファームウェアアップデート。引数にアップデートファイルのパスも入れる"
+                android:text="端末の電源管理をする関数。\n通常、文字列は null で構いません。\nフラグについては以下の通りです：\n・0: 再起動\n・1: 即初期化\n・2: ファームウェアアップデート\n　　 引数にファイルのパスを入れる\n　　基本は /cache/update.zip"
                 android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -598,7 +598,42 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="デバイスの状態を学習環境に最適(?)な状態に設定します。\ncancelSetup とは違い、ユーザーアプリの削除は行われませんが、それ以外の設定をほぼ全て上書きされ、\nADB や開発者向けオプションを無効化されます・"
+                android:text="デバイスの状態を学習環境に最適(?)な状態に設定します。\ncancelSetup() とは違い、ユーザーアプリの削除は行われませんが、それ以外の設定を学習環境用に再設定され、\nADB や開発者向けオプションを無効化されます。"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@android:color/darker_gray" />
+
+        <!-- setDefaultPreferredApp -->
+        <TextView
+            android:id="@+id/about_setDefaultPreferredApp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="4dp"
+            android:text="void setDefaultPreferredApp(String packageName)"
+            android:textColor="@android:color/black"
+            android:textSize="24sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/about_setDefaultPreferredApp_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="指定されたパッケージを既定のランチャーとして設定します。\nIntent の Action に MAIN、Category に DEFAULT, HOME が必要です。"
                 android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -738,7 +773,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="指定したユーザーパッケージをアンインストールします。\nフラグについては以下の通りです：\n・0(以外)：通常通りアンインストール：DELETE_ALL_USERS\n・1: データを保持してパッケージのみアンインストール：DELETE_KEEP_DATA | DELETE_ALL_USERS\n　　→ adb uninstall の -k オプションと同様"
+                android:text="指定したユーザーパッケージをアンインストールします。\nフラグについては以下の通りです：\n・0(以外)：通常通りアンインストール：DELETE_ALL_USERS\n・1: データを保持してパッケージのみアンインストール：DELETE_KEEP_DATA\n　　→ pm uninstall の -k オプションと同様"
                 android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>

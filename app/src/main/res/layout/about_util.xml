@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="指定されたパッケージの優先アクティビティマッピングを解除します。\n主にホームランチャーの設定に使用されます。\n例えば、Nova Launcher がランチャーとして設定されている状態で、com.teslacoilsw.launcher を引数に入れ実行すると、\n既定の状態が解除されるので、ホームを開くとランチャーの選択画面が出てきます。"
+                android:text="指定されたパッケージの優先アクティビティマッピングを解除します。\n主にホームランチャーの設定に使用されます。\n例えば、Nova Launcher がランチャーとして設定されている状態で、com.teslacoilsw.launcher を引数に入れ実行すると、\n既定の状態が解除されるので、ホームを開くとランチャーの選択画面が出てきます。\nホームランチャー以外の規定も解除されます。"
                 android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -283,7 +283,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="ディスプレイの物理的な解像度を返します。\nただし、jp.co.benesse.touch.allgrade.b003.touchhomelauncher がインストールされている場合、\n必然的に、[1280, 800] になります。"
+                android:text="ディスプレイの物理的な解像度を返します。\nただし、jp.co.benesse.touch.allgrade.b003.touchhomelauncher がインストールされている場合は、[1280, 800] になります。"
                 android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -493,7 +493,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="画面の解像度を強制的に設定します。\n・[1920, 1200]\n・[1024, 768]\n・[1280, 800]"
+                android:text="画面の解像度を強制的に設定します。\n通常使用される比率は次の通りです：\n・[1920, 1200]\n・[1024, 768]\n・[1280, 800]"
                 android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
