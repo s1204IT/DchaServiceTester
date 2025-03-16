@@ -181,6 +181,25 @@ public class Tester extends Activity {
                     }
                 });
 
+                // getCanonicalExternalPath
+                findViewById(R.id.btn_getCanonicalExternalPath).setOnClickListener(view -> {
+                    setContentView(R.layout.layout_getcanonicalexternalpath);
+
+                    // getCanonicalExternalPath(linkPath)
+                    findViewById(R.id.exec).setOnClickListener(view111 -> {
+                        EditText linkPathBox = findViewById(R.id.getCanonicalExternalPath_linkPath);
+                        String linkPath = linkPathBox.getText().toString();
+                        try {
+                            String result = String.valueOf(mDchaService.getCanonicalExternalPath(linkPath));
+                            Toast.makeText(getApplicationContext(), "実行結果：" + result, Toast.LENGTH_LONG).show();
+                        } catch (RemoteException ignored) {
+                        }
+                    });
+
+                    // メニューに戻る
+                    findViewById(R.id.backHome).setOnClickListener(view112 -> backHome());
+                });
+
                 // getForegroundPackageName
                 findViewById(R.id.btn_getForegroundPackageName).setOnClickListener(view -> {
                     try {

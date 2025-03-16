@@ -213,7 +213,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="指定されたパスの絶対パスを取得します。\nこれは内部ストレージも使用可能です。\n本来は DchaService にも搭載されているはずなのですが、使用できませんでした。"
+                android:text="指定されたパスの絶対パスを取得します。\nこれは内部ストレージも使用可能です。"
                 android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -459,6 +459,41 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:text="SDカードのマウントを解除します。\n言い換えると、ソフトウェア単位で取り外します。"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@android:color/darker_gray" />
+
+        <!-- setDefaultPreferredHomeApp -->
+        <TextView
+            android:id="@+id/about_setDefaultPreferredApp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="4dp"
+            android:text="void setDefaultPreferredHomeApp(String packageName)"
+            android:textColor="@android:color/black"
+            android:textSize="24sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/about_setDefaultPreferredApp_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="指定されたパッケージを既定のランチャーとして設定します。\nIntent の Action に MAIN、Category に DEFAULT, HOME が必要です。"
                 android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>

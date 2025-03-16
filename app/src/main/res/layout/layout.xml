@@ -128,6 +128,22 @@
             android:padding="1dp">
 
             <Button
+                android:id="@+id/btn_getCanonicalExternalPath"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="getCanonicalExternalPath"
+                android:textAllCaps="false"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="1dp">
+
+            <Button
                 android:id="@+id/btn_getForegroundPackageName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
