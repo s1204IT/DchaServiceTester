@@ -82,9 +82,15 @@ public class UtilTester extends Activity implements View.OnClickListener {
         setContentView(R.layout.util);
         for (int resId: FUNC_LIST) setOnClickListener(resId);
 
-        if (!bindService(BIND_UTIL, mConn, Context.BIND_AUTO_CREATE)) {
-            Toast.makeText(this, "DchaUtilService をバインド出来ませんでした", Toast.LENGTH_LONG).show();
-            finishAndRemoveTask();
+        try {
+            if (!bindService(BIND_UTIL, mConn, Context.BIND_AUTO_CREATE)) {
+                Toast.makeText(this, "DchaUtilService をバインド出来ませんでした", Toast.LENGTH_LONG).show();
+                finishAndRemoveTask();
+            }
+        } catch (SecurityException ignored) {
+            finish();
+            makeText("｢許可｣を押して権限を昇格して下さい");
+            startActivity(new Intent(Intent.ACTION_VIEW).setClassName(getPackageName(), RequestPermission.class.getName()).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
         }
     }
 
@@ -161,10 +167,6 @@ public class UtilTester extends Activity implements View.OnClickListener {
                 makeText(width.isEmpty() || height.isEmpty() ? "値を入力してください" : "setForcedDisplaySize：" + mUtilService.setForcedDisplaySize(Integer.parseInt(width), Integer.parseInt(height)));
             }
         } catch (RemoteException ignored) {
-        } catch (SecurityException ignored) {
-            finish();
-            makeText("｢許可｣を押して権限を昇格して下さい");
-            startActivity(new Intent(Intent.ACTION_VIEW).setClassName(getPackageName(), RequestPermission.class.getName()).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
         }
     }
 

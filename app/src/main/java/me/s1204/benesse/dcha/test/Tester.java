@@ -88,9 +88,15 @@ public class Tester extends Activity implements View.OnClickListener {
         setContentView(R.layout.layout);
         for (int resId: FUNC_LIST) setOnClickListener(resId);
 
-        if (!bindService(BIND_DCHA, mConn, Context.BIND_AUTO_CREATE)) {
-            Toast.makeText(this, "DchaService をバインド出来ませんでした", Toast.LENGTH_LONG).show();
-            finishAndRemoveTask();
+        try {
+            if (!bindService(BIND_DCHA, mConn, Context.BIND_AUTO_CREATE)) {
+                Toast.makeText(this, "DchaService をバインド出来ませんでした", Toast.LENGTH_LONG).show();
+                finishAndRemoveTask();
+            }
+        } catch (SecurityException ignored) {
+            finish();
+            makeText("｢許可｣を押して権限を昇格して下さい");
+            startActivity(new Intent(Intent.ACTION_VIEW).setClassName(getPackageName(), RequestPermission.class.getName()).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
         }
     }
 
@@ -216,10 +222,6 @@ public class Tester extends Activity implements View.OnClickListener {
                 makeText("verifyUpdateImage：" + mDchaService.verifyUpdateImage(updateFile));
             }
         } catch (RemoteException ignored) {
-        } catch (SecurityException ignored) {
-            finish();
-            makeText("｢許可｣を押して権限を昇格して下さい");
-            startActivity(new Intent(Intent.ACTION_VIEW).setClassName(getPackageName(), RequestPermission.class.getName()).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
         }
     }
 
