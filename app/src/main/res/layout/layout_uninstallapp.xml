@@ -29,7 +29,7 @@
             android:hint="パッケージID" />
 
         <EditText
-            android:id="@+id/uninstallApp_flags"
+            android:id="@+id/uninstallApp_uninstallFlag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -38,7 +38,7 @@
             android:hint="データ保持フラグ (未入力の場合は&quot;0&quot;)" />
 
         <Button
-            android:id="@+id/exec"
+            android:id="@+id/exec_uninstallApp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

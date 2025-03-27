@@ -21,7 +21,7 @@
             android:textSize="26sp" />
 
         <EditText
-            android:id="@+id/rebootPad_flags"
+            android:id="@+id/rebootPad_rebootMode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -30,7 +30,7 @@
             android:hint="フラグ (未入力の場合は&quot;0&quot;)" />
 
         <EditText
-            android:id="@+id/rebootPad_packagePath"
+            android:id="@+id/rebootPad_srcFile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -39,7 +39,7 @@
 
 
         <Button
-            android:id="@+id/exec"
+            android:id="@+id/exec_rebootPad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

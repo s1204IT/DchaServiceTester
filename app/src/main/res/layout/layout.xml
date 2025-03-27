@@ -394,35 +394,5 @@
                 android:textSize="14sp" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="1dp">
-            <Button
-                android:id="@+id/btn_openSettings"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:text="設定アプリを起動"
-                android:textAllCaps="false"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="1dp">
-            <Button
-                android:id="@+id/btn_openDevOpts"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:text="開発者向けオプションを起動"
-                android:textAllCaps="false"
-                android:textSize="16sp" />
-        </LinearLayout>
-
     </LinearLayout>
 </ScrollView>

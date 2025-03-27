@@ -21,7 +21,7 @@
             android:textSize="26sp" />
 
         <EditText
-            android:id="@+id/verifyUpdateImage_path"
+            android:id="@+id/verifyUpdateImage_updateFile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -30,7 +30,7 @@
             android:text="/storage/sdcard1/update.zip" />
 
         <Button
-            android:id="@+id/exec"
+            android:id="@+id/exec_verifyUpdateImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

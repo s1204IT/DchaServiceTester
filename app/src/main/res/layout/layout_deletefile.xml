@@ -30,7 +30,7 @@
             android:text="/storage/sdcard1/" />
 
         <Button
-            android:id="@+id/exec"
+            android:id="@+id/exec_deleteFile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

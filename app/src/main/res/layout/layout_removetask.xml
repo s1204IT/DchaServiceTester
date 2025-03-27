@@ -29,7 +29,7 @@
             android:hint="パッケージID" />
 
         <Button
-            android:id="@+id/exec"
+            android:id="@+id/exec_removeTask"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

@@ -34,10 +34,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:hint="ファイルのコピー先フルパス" />
+            android:hint="ファイルのコピー先フルパス"
+            android:text="/cache/../" />
 
         <Button
-            android:id="@+id/exec"
+            android:id="@+id/exec_copyUpdateImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

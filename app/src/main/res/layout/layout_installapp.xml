@@ -21,7 +21,7 @@
             android:textSize="26sp" />
 
         <EditText
-            android:id="@+id/installApp_packagePath"
+            android:id="@+id/installApp_path"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -29,7 +29,7 @@
             android:hint="APKファイルのフルパス" />
 
         <EditText
-            android:id="@+id/installApp_flags"
+            android:id="@+id/installApp_installFlag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -38,7 +38,7 @@
             android:hint="上書きフラグ (未入力の場合は&quot;2&quot;)" />
 
         <Button
-            android:id="@+id/exec"
+            android:id="@+id/exec_installApp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

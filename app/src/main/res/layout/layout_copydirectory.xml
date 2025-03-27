@@ -47,7 +47,7 @@
             android:entries="@array/bool" />
 
         <Button
-            android:id="@+id/exec"
+            android:id="@+id/exec_copyDirectory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

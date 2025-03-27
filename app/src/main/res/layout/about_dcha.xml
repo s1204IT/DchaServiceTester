@@ -773,7 +773,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="システムの日時の設定を行います。\nSimpleDateFormat に沿ってフォーマットを指定してください。\n2016/02/01 24(kk=00):01:00.000 以前の日時は指定できません。"
+                android:text="システムの日時の設定を行います。\nSimpleDateFormat に沿ってフォーマットを指定してください。\n2016/02/01 00:01:00.000 以前の日時は指定できません。"
                 android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>

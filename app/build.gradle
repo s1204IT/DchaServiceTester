@@ -9,8 +9,8 @@ android {
     defaultConfig {
         minSdk = 22
         targetSdk = 35
-        versionCode = 15
-        versionName = "1.5.2"
+        versionCode = 16
+        versionName = "1.5.3"
         proguardFiles += 'proguard-rules.pro'
         multiDexEnabled = false
     }
@@ -45,11 +45,11 @@ android {
 
     lintOptions {
         abortOnError = false
-        disable 'HardcodedText', 'InefficientWeight', 'Autofill', 'TextFields', 'Deprecated', 'TooManyViews', 'DiscouragedApi'
+        disable 'HardcodedText', 'InefficientWeight', 'Autofill', 'TextFields', 'Deprecated', 'TooManyViews', 'DiscouragedApi', 'ScopedStorage'
     }
 }
 
 dependencies {
-    implementation files('libs/DchaService.jar')
-    implementation files('libs/DchaUtilService.jar')
+    implementation 'com.github.s1204IT:DchaService:1.0.0'
+    implementation 'com.github.s1204IT:DchaUtilService:1.0.0'
 }
