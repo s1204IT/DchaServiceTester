@@ -158,8 +158,7 @@ public class UtilTester extends Activity implements View.OnClickListener {
             } else if (resId == R.id.exec_setForcedDisplaySize) {
                 String width = getBoxText(R.id.setForcedDisplaySize_width);
                 String height = getBoxText(R.id.setForcedDisplaySize_height);
-                if (width.isEmpty() || height.isEmpty()) makeText("値を入力してください");
-                makeText("setForcedDisplaySize：" + mUtilService.setForcedDisplaySize(Integer.parseInt(width), Integer.parseInt(height)));
+                makeText(width.isEmpty() || height.isEmpty() ? "値を入力してください" : "setForcedDisplaySize：" + mUtilService.setForcedDisplaySize(Integer.parseInt(width), Integer.parseInt(height)));
             }
         } catch (RemoteException ignored) {
         } catch (SecurityException ignored) {
