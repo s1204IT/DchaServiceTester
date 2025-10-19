@@ -122,7 +122,7 @@ public class Tester extends Activity implements View.OnClickListener {
                 String dstFilePath = getBoxText(R.id.copyFile_dstFilePath);
                 makeText("copyFile：" + mDchaService.copyFile(srcFilePath, dstFilePath));
             } else if (resId == R.id.btn_copyUpdateImage) {
-                changeLayout(R.layout.layout_copyupdateimage, R.id.btn_copyUpdateImage);
+                changeLayout(R.layout.layout_copyupdateimage, R.id.exec_copyUpdateImage);
             } else if (resId == R.id.exec_copyUpdateImage) {
                 String srcFilePath = getBoxText(R.id.copyUpdateImage_srcFilePath);
                 String dstFilePath = getBoxText(R.id.copyUpdateImage_dstFilePath);
