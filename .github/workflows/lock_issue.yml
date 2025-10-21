@@ -13,10 +13,10 @@ jobs:
     steps:
 
       - name: Lock issue
-        uses: s1204IT/lock-issues@v1.2
+        uses: IOrlandoni/lock-issues@v1.2.1
         if: github.event.issue.state == 'closed'
         id: locked
 
       - name: Unlock issue
-        uses: s1204IT/unlock-issues@v1.2
+        uses: IOrlandoni/unlock-issues@v1.2.1
         if: steps.locked.outcome != 'success'

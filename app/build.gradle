@@ -4,13 +4,13 @@ plugins {
 
 android {
     namespace = 'me.s1204.benesse.dcha.test'
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 22
-        targetSdk = 35
-        versionCode = 16
-        versionName = "1.5.3"
+        targetSdk = 36
+        versionCode = 17
+        versionName = "1.5.4"
         proguardFiles += 'proguard-rules.pro'
         multiDexEnabled = false
     }
