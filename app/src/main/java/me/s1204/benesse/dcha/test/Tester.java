@@ -196,6 +196,8 @@ public class Tester extends Activity implements View.OnClickListener {
                 setOnClickListener(R.id.setSetupStatus_1);
                 setOnClickListener(R.id.setSetupStatus_2);
                 setOnClickListener(R.id.setSetupStatus_3);
+            } else if (resId == R.id.setSetupStatus_0) {
+                mDchaService.setSetupStatus(0);
             } else if (resId == R.id.setSetupStatus_1) {
                 mDchaService.setSetupStatus(1);
             } else if (resId == R.id.setSetupStatus_2) {
