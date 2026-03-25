@@ -9,8 +9,8 @@ android {
     defaultConfig {
         minSdk = 22
         targetSdk = compileSdk
-        versionCode = 18
-        versionName = "1.5.5"
+        versionCode = 19
+        versionName = "1.6.0"
         proguardFiles += 'proguard-rules.pro'
         multiDexEnabled = false
     }
@@ -51,5 +51,5 @@ android {
 
 dependencies {
     implementation 'me.s1204:DchaService:1.0.0'
-    implementation 'me.s1204:DchaUtilService:1.0.0'
+    implementation 'me.s1204:DchaUtilService:1.1.0'
 }

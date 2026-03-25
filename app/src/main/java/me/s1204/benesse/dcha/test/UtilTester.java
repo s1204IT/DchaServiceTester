@@ -52,8 +52,11 @@ public class UtilTester extends Activity implements View.OnClickListener {
             R.id.btn_getCanonicalExternalPath,
             R.id.btn_getDisplaySize,
             R.id.btn_getLcdSize,
+            R.id.btn_getOriginalLcdSize,
             R.id.btn_getUserCount,
+            R.id.btn_gotoSleep,
             R.id.btn_hideNavigationBar,
+            R.id.btn_initializeDevice,
             R.id.btn_listFiles,
             R.id.btn_makeDir,
             R.id.btn_sdUnmount,
@@ -137,8 +140,12 @@ public class UtilTester extends Activity implements View.OnClickListener {
                 makeText("getDisplaySize：" + Arrays.toString(mUtilService.getDisplaySize()));
             } else if (resId == R.id.btn_getLcdSize) {
                 makeText("getLcdSize：" + Arrays.toString(mUtilService.getLcdSize()));
+            } else if (resId == R.id.btn_getOriginalLcdSize) {
+                makeText("getOriginalLcdSize：" + Arrays.toString(mUtilService.getOriginalLcdSize()));
             } else if (resId == R.id.btn_getUserCount) {
                 makeText("getUserCount：" + mUtilService.getUserCount());
+            } else if (resId == R.id.btn_gotoSleep) {
+                mUtilService.gotoSleep();
             } else if (resId == R.id.btn_hideNavigationBar) {
                 changeLayout(R.layout.layout_hidenavigationbar, R.id.hideNavBar_true);
                 setOnClickListener(R.id.hideNavBar_false);
@@ -146,6 +153,8 @@ public class UtilTester extends Activity implements View.OnClickListener {
                 mUtilService.hideNavigationBar(true);
             } else if (resId == R.id.hideNavBar_false) {
                 mUtilService.hideNavigationBar(false);
+            } else if (resId == R.id.btn_initializeDevice) {
+                mUtilService.initializeDevice();
             } else if (resId == R.id.btn_listFiles) {
                 changeLayout(R.layout.layout_listfiles, R.id.exec_listFiles);
             } else if (resId == R.id.exec_listFiles) {

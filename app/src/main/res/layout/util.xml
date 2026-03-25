@@ -143,12 +143,44 @@
             android:padding="1dp">
 
             <Button
+                android:id="@+id/btn_getOriginalLcdSize"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="getOriginalLcdSize"
+                android:textAllCaps="false"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="1dp">
+
+            <Button
                 android:id="@+id/btn_getUserCount"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:text="getUserCount"
+                android:textAllCaps="false"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="1dp">
+
+            <Button
+                android:id="@+id/btn_gotoSleep"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="gotoSleep"
                 android:textAllCaps="false"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -165,6 +197,22 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:text="hideNavigationBar"
+                android:textAllCaps="false"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="1dp">
+
+            <Button
+                android:id="@+id/btn_initializeDevice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="initializeDevice (※誤タップ注意※)"
                 android:textAllCaps="false"
                 android:textSize="14sp" />
         </LinearLayout>
