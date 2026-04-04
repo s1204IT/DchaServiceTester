@@ -703,7 +703,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="この関数を呼び出したアプリに、READ_EXTERNAL_STORAGE の権限を昇格または降格するはずなのですが、\n何故か DchaService が壊れ、結局権限は付与されません。"
+                android:text="端末全体で、targetSdk が 15 以下のアプリに対して \nsdcard_r (READ_EXTERNAL_STORAGE) のチェックを厳格化します。\n※ true で厳格化（拒否）、false で通過（許可）になります。\n処理実行後に DchaService が死滅するのは Android の仕様です。\nAndroid 5.1 まで有効です。"
                 android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
