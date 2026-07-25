@@ -28,14 +28,13 @@
             android:layout_weight="1"
             android:hint="APKファイルのフルパス" />
 
-        <EditText
+        <Spinner
             android:id="@+id/installApp_installFlag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:inputType="number"
-            android:hint="上書きフラグ (未入力の場合は&quot;2&quot;)" />
+            android:entries="@array/install" />
 
         <Button
             android:id="@+id/exec_installApp"

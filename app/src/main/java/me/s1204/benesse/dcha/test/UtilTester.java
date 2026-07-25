@@ -25,6 +25,16 @@ public class UtilTester extends Activity implements View.OnClickListener {
     private static final String UTIL_PACKAGE = "jp.co.benesse.dcha.dchautilservice";
     private static final String UTIL_SERVICE = UTIL_PACKAGE + ".DchaUtilService";
 
+    public static final int RESOLUTION_XGA_WIDTH = 1024;
+    public static final int RESOLUTION_XGA_HEIGHT = 768;
+    public static final int RESOLUTION_WXGA_WIDTH = 1280;
+    public static final int RESOLUTION_WXGA_HEIGHT = 800;
+    public static final int RESOLUTION_WUXGA_WIDTH = 1920;
+    public static final int RESOLUTION_WUXGA_HEIGHT = 1200;
+
+    private static final int[] WIDTHS  = { RESOLUTION_XGA_WIDTH,  RESOLUTION_WXGA_WIDTH,  RESOLUTION_WUXGA_WIDTH };
+    private static final int[] HEIGHTS = { RESOLUTION_XGA_HEIGHT, RESOLUTION_WXGA_HEIGHT, RESOLUTION_WUXGA_HEIGHT };
+
     private void makeText(String msg) {
         runOnUiThread(() -> Toast.makeText(this, msg, Toast.LENGTH_LONG).show());
     }
@@ -41,6 +51,10 @@ public class UtilTester extends Activity implements View.OnClickListener {
 
     private String getBoxText(int resId) {
         return ((EditText) findViewById(resId)).getText().toString();
+    }
+
+    private int getPullNumIndex(int resId) {
+        return ((Spinner) findViewById(resId)).getSelectedItemPosition();
     }
 
     private static final int[] FUNC_LIST = {
@@ -100,41 +114,73 @@ public class UtilTester extends Activity implements View.OnClickListener {
     @Override
     public void onClick(final View v) {
         final int resId = v.getId();
-        if (resId == R.id.backHome) //noinspection deprecation
+        if (resId == R.id.backHome)
             onBackPressed();
         try {
             if (resId == R.id.btn_clearDefaultPreferredApp) {
                 changeLayout(R.layout.layout_cleardefaultpreferredapp, R.id.exec_clearDefaultPreferredApp);
             } else if (resId == R.id.exec_clearDefaultPreferredApp) {
                 String packageName = getBoxText(R.id.clearDefaultPreferredApp_packageName);
+                if (packageName.isEmpty()) {
+                    makeText("パッケージ名を入力してください");
+                    return;
+                }
                 mUtilService.clearDefaultPreferredApp(packageName);
             } else if (resId == R.id.btn_copyFile) {
                 changeLayout(R.layout.layout_copyfile, R.id.exec_copyFile);
             } else if (resId == R.id.exec_copyFile) {
                 String srcFilePath = getBoxText(R.id.copyFile_srcFilePath);
+                if (srcFilePath.isEmpty()) {
+                    makeText("ソースパスを入力してください");
+                    return;
+                }
                 String dstFilePath = getBoxText(R.id.copyFile_dstFilePath);
+                if (dstFilePath.isEmpty()) {
+                    makeText("デスティネーションパスを入力してください");
+                    return;
+                }
                 makeText("copyFile：" + mUtilService.copyFile(srcFilePath, dstFilePath));
             } else if (resId == R.id.btn_copyDirectory) {
                 changeLayout(R.layout.layout_copydirectory, R.id.exec_copyDirectory);
             } else if (resId == R.id.exec_copyDirectory) {
                 String srcDirPath = getBoxText(R.id.copyDirectory_srcDirPath);
+                if (srcDirPath.isEmpty()) {
+                    makeText("ソースパスを入力してください");
+                    return;
+                }
                 String dstDirPath = getBoxText(R.id.copyDirectory_dstDirPath);
+                if (dstDirPath.isEmpty()) {
+                    makeText("デスティネーションパスを入力してください");
+                    return;
+                }
                 String makeTopDir = ((Spinner) findViewById(R.id.copyDirectory_makeTopDir)).getSelectedItem().toString();
-                makeText("copyDirectory：" + mUtilService.copyDirectory(srcDirPath, dstDirPath, makeTopDir.equals("true")));
+                makeText("copyDirectory：" + mUtilService.copyDirectory(srcDirPath, dstDirPath, Boolean.parseBoolean(makeTopDir)));
             } else if (resId == R.id.btn_deleteFile) {
                 changeLayout(R.layout.layout_deletefile, R.id.exec_deleteFile);
             } else if (resId == R.id.exec_deleteFile) {
                 String path = getBoxText(R.id.deleteFile_path);
+                if (path.isEmpty()) {
+                    makeText("パスを入力してください");
+                    return;
+                }
                 makeText("deleteFile：" + mUtilService.deleteFile(path));
             } else if (resId == R.id.btn_existsFile) {
                 changeLayout(R.layout.layout_existsfile, R.id.exec_existsFile);
             } else if (resId == R.id.exec_existsFile) {
                 String path = getBoxText(R.id.existsFile_path);
+                if (path.isEmpty()) {
+                    makeText("パスを入力してください");
+                    return;
+                }
                 makeText("existsFile：" + mUtilService.existsFile(path));
             } else if (resId == R.id.btn_getCanonicalExternalPath) {
                 changeLayout(R.layout.layout_getcanonicalexternalpath, R.id.exec_getCanonicalExternalPath);
             } else if (resId == R.id.exec_getCanonicalExternalPath) {
                 String linkPath = getBoxText(R.id.getCanonicalExternalPath_linkPath);
+                if (linkPath.isEmpty()) {
+                    makeText("パスを入力してください");
+                    return;
+                }
                 makeText("getCanonicalExternalPath：" + mUtilService.getCanonicalExternalPath(linkPath));
             } else if (resId == R.id.btn_getDisplaySize) {
                 makeText("getDisplaySize：" + Arrays.toString(mUtilService.getDisplaySize()));
@@ -159,28 +205,49 @@ public class UtilTester extends Activity implements View.OnClickListener {
                 changeLayout(R.layout.layout_listfiles, R.id.exec_listFiles);
             } else if (resId == R.id.exec_listFiles) {
                 String path = getBoxText(R.id.listFiles_path);
+                if (path.isEmpty()) {
+                    makeText("パスを入力してください");
+                    return;
+                }
                 makeText("listFiles：" + Arrays.toString(mUtilService.listFiles(path)));
             } else if (resId == R.id.btn_makeDir) {
                 changeLayout(R.layout.layout_makedir, R.id.exec_makeDir);
             } else if (resId == R.id.exec_makeDir) {
                 String path = getBoxText(R.id.makeDir_path);
+                if (path.isEmpty()) {
+                    makeText("パスを入力してください");
+                    return;
+                }
                 String dirname = getBoxText(R.id.makeDir_dirname);
+                if (dirname.isEmpty()) {
+                    makeText("ディレクトリ名を入力してください");
+                    return;
+                }
                 makeText("makeDir：" + mUtilService.makeDir(path, dirname));
             } else if (resId == R.id.btn_sdUnmount) {
                 mUtilService.sdUnmount();
+            } else if (resId == R.id.btn_setDefaultPreferredHomeApp) {
+                changeLayout(R.layout.layout_setdefaultpreferredhomeapp, R.id.exec_setDefaultPreferredHomeApp);
+            } else if (resId == R.id.exec_setDefaultPreferredHomeApp) {
+                String packageName = getBoxText(R.id.setDefaultPreferredHomeApp_packageName);
+                if (packageName.isEmpty()) {
+                    makeText("パッケージ名を入力してください");
+                    return;
+                }
+                mUtilService.setDefaultPreferredHomeApp(packageName);
             } else if (resId == R.id.btn_setForcedDisplaySize) {
                 changeLayout(R.layout.layout_setforceddisplaysize, R.id.exec_setForcedDisplaySize);
             } else if (resId == R.id.exec_setForcedDisplaySize) {
-                String width = getBoxText(R.id.setForcedDisplaySize_width);
-                String height = getBoxText(R.id.setForcedDisplaySize_height);
-                makeText(width.isEmpty() || height.isEmpty() ? "値を入力してください" : "setForcedDisplaySize：" + mUtilService.setForcedDisplaySize(Integer.parseInt(width), Integer.parseInt(height)));
+                int entry = getPullNumIndex(R.id.setForcedDisplaySize);
+                int width = WIDTHS[entry];
+                int height = HEIGHTS[entry];
+                makeText("setForcedDisplaySize：" + mUtilService.setForcedDisplaySize(width, height));
             }
         } catch (RemoteException ignored) {
         }
     }
 
-    /** @noinspection DeprecatedIsStillUsed*/
-    @Deprecated
+    @SuppressWarnings("deprecation")
     @Override
     public void onBackPressed() {
         finish();

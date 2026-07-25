@@ -9,3 +9,5 @@ build/
 # Android Studio Signing APK
 /app/debug/
 /app/release/
+# OSX
+.DS_Store

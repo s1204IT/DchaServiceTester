@@ -4,13 +4,15 @@ plugins {
 
 android {
     namespace = 'me.s1204.benesse.dcha.test'
+    //noinspection GradleDependency
     compileSdk = 36
 
     defaultConfig {
         minSdk = 22
-        targetSdk = compileSdk
-        versionCode = 19
-        versionName = "1.6.0"
+        //noinspection ExpiredTargetSdkVersion
+        targetSdk = 28
+        versionCode = 20
+        versionName = "1.7.0"
         proguardFiles += 'proguard-rules.pro'
         multiDexEnabled = false
     }

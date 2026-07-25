@@ -20,14 +20,13 @@
             android:text="rebootPad"
             android:textSize="26sp" />
 
-        <EditText
+        <Spinner
             android:id="@+id/rebootPad_rebootMode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:inputType="number"
-            android:hint="フラグ (未入力の場合は&quot;0&quot;)" />
+            android:entries="@array/reboot" />
 
         <EditText
             android:id="@+id/rebootPad_srcFile"
@@ -35,8 +34,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:hint="ファームウェアファイルのフルパス" />
-
+            android:hint="ファームウェアファイルのフルパス"
+            android:text="/cache/update.zip" />
 
         <Button
             android:id="@+id/exec_rebootPad"

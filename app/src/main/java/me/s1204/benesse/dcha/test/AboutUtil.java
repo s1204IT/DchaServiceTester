@@ -9,8 +9,9 @@ public class AboutUtil extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.about_util);
     }
+
+    @SuppressWarnings("deprecation")
     @Override
-    @Deprecated
     public void onBackPressed() {
         finish();
     }

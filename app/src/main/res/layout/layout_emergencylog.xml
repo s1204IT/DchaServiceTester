@@ -17,27 +17,38 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="uninstallApp"
+            android:text="EmergencyLog"
             android:textSize="26sp" />
 
         <EditText
-            android:id="@+id/uninstallApp_packageName"
+            android:id="@+id/EmergencyLog_EXTRA_LOG_KIND"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:hint="パッケージID" />
+            android:hint="EXTRA_LOG_KIND"
+            android:text="" />
 
-        <Spinner
-            android:id="@+id/uninstallApp_uninstallFlag"
+        <EditText
+            android:id="@+id/EmergencyLog_EXTRA_LOG_DATE"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:entries="@array/uninstall" />
+            android:hint="EXTRA_LOG_DATE"
+            android:text="" />
+
+        <EditText
+            android:id="@+id/EmergencyLog_EXTRA_LOG_MESSAGE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:hint="EXTRA_LOG_MESSAGE"
+            android:text="" />
 
         <Button
-            android:id="@+id/exec_uninstallApp"
+            android:id="@+id/exec_EmergencyLog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -45,6 +56,7 @@
             android:text="実行" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

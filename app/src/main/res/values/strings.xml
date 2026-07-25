@@ -9,9 +9,23 @@
         <item>false</item>
         <item>true</item>
     </string-array>
+    <string-array name="install">
+        <item>通常 (0)</item>
+        <item>上書き (1)</item>
+        <item>ダウングレード許可 (debuggable) (2)</item>
+    </string-array>
+    <string-array name="uninstall">
+        <item>通常 (0)</item>
+        <item>データ保持 (1)</item>
+    </string-array>
+    <string-array name="reboot">
+        <item>通常 (0)</item>
+        <item>初期化 (1)</item>
+        <item>FW更新 (2)</item>
+    </string-array>
     <string-array name="display_size">
-        <item>1920x1200</item>
-        <item>1024x768</item>
-        <item>1280x800</item>
+        <item>1024x768 (XGA)</item>
+        <item>1280x800 (WXGA)</item>
+        <item>1920x1200 (WUXGA) (Neo/Next のみ)</item>
     </string-array>
 </resources>

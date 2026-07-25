@@ -143,7 +143,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="SDカード内でのファイルのコピーを行います。\nコピー先のみディレクトリでも可能。\n内部ストレージには使用できません。\nCT3 は false のみ返します。\nファイルモードとしては、Readable, Writable, Executable を全て許可しているのですが、Android システムの制約上、Other の RW は昇格されません。"
+                android:text="SDカード内でのファイルのコピーを行います。\nコピー先のみディレクトリでも可能。\n内部ストレージには使用できません。\nCT3 は、常に false を返します。\nファイルモードとしては、Readable, Writable, Executable を全て許可しているのですが、Android システムの制約上、Other の RW は昇格されません。"
                 android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -213,7 +213,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="SDカード内でのファイルまたはディレクトリの削除を行います。\n内部ストレージには使用できません。\nCT3 は false のみ返します。"
+                android:text="SDカード内でのファイルまたはディレクトリの削除を行います。\n内部ストレージには使用できません。\nCT3 は、常に false を返します。"
                 android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>

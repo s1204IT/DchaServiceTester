@@ -9,8 +9,9 @@ public class About extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.about_dcha);
     }
+
+    @SuppressWarnings("deprecation")
     @Override
-    @Deprecated
     public void onBackPressed() {
         finish();
     }

@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import jp.co.benesse.dcha.dchaservice.IDchaService;
@@ -21,6 +22,7 @@ public class Tester extends Activity implements View.OnClickListener {
     IDchaService mDchaService = null;
     private static final String DCHA_PACKAGE = "jp.co.benesse.dcha.dchaservice";
     private static final String DCHA_SERVICE = DCHA_PACKAGE + ".DchaService";
+    private static final String DCHA_PROXY = DCHA_PACKAGE + ".ProxyService";
 
     private void makeText(String msg) {
         runOnUiThread(() -> Toast.makeText(this, msg, Toast.LENGTH_LONG).show());
@@ -38,6 +40,10 @@ public class Tester extends Activity implements View.OnClickListener {
 
     private String getBoxText(int resId) {
         return ((EditText) findViewById(resId)).getText().toString();
+    }
+
+    private int getPullNumIndex(int resId) {
+        return ((Spinner) findViewById(resId)).getSelectedItemPosition();
     }
 
     private static final int[] FUNC_LIST = {
@@ -64,7 +70,9 @@ public class Tester extends Activity implements View.OnClickListener {
             R.id.btn_setSetupStatus,
             R.id.btn_setSystemTime,
             R.id.btn_uninstallApp,
-            R.id.btn_verifyUpdateImage
+            R.id.btn_verifyUpdateImage,
+            R.id.btn_EmergencyLog,
+            R.id.btn_UpdateTime
     };
 
     Intent BIND_DCHA = new Intent(DCHA_SERVICE).setPackage(DCHA_PACKAGE);
@@ -103,7 +111,7 @@ public class Tester extends Activity implements View.OnClickListener {
     @Override
     public void onClick(final View v) {
         final int resId = v.getId();
-        if (resId == R.id.backHome) //noinspection deprecation
+        if (resId == R.id.backHome)
             onBackPressed();
         try {
             if (resId == R.id.btn_cancelSetup) {
@@ -114,23 +122,47 @@ public class Tester extends Activity implements View.OnClickListener {
                 changeLayout(R.layout.layout_cleardefaultpreferredapp, R.id.exec_clearDefaultPreferredApp);
             } else if (resId == R.id.exec_clearDefaultPreferredApp) {
                 String packageName = getBoxText(R.id.clearDefaultPreferredApp_packageName);
+                if (packageName.isEmpty()) {
+                    makeText("パッケージ名を入力してください");
+                    return;
+                }
                 mDchaService.clearDefaultPreferredApp(packageName);
             } else if (resId == R.id.btn_copyFile) {
                 changeLayout(R.layout.layout_copyfile, R.id.exec_copyFile);
             } else if (resId == R.id.exec_copyFile) {
                 String srcFilePath = getBoxText(R.id.copyFile_srcFilePath);
+                if (srcFilePath.isEmpty()) {
+                    makeText("ソースパスを入力してください");
+                    return;
+                }
                 String dstFilePath = getBoxText(R.id.copyFile_dstFilePath);
+                if (dstFilePath.isEmpty()) {
+                    makeText("デスティネーションパスを入力してください");
+                    return;
+                }
                 makeText("copyFile：" + mDchaService.copyFile(srcFilePath, dstFilePath));
             } else if (resId == R.id.btn_copyUpdateImage) {
                 changeLayout(R.layout.layout_copyupdateimage, R.id.exec_copyUpdateImage);
             } else if (resId == R.id.exec_copyUpdateImage) {
                 String srcFilePath = getBoxText(R.id.copyUpdateImage_srcFilePath);
+                if (srcFilePath.isEmpty()) {
+                    makeText("ソースパスを入力してください");
+                    return;
+                }
                 String dstFilePath = getBoxText(R.id.copyUpdateImage_dstFilePath);
+                if (dstFilePath.isEmpty()) {
+                    makeText("デスティネーションパスを入力してください");
+                    return;
+                }
                 makeText("copyUpdateImage：" + mDchaService.copyUpdateImage(srcFilePath, dstFilePath));
             } else if (resId == R.id.btn_deleteFile) {
                 changeLayout(R.layout.layout_deletefile, R.id.exec_deleteFile);
             } else if (resId == R.id.exec_deleteFile) {
                 String path = getBoxText(R.id.deleteFile_path);
+                if (path.isEmpty()) {
+                    makeText("パスを入力してください");
+                    return;
+                }
                 makeText("deleteFile：" + mDchaService.deleteFile(path));
             } else if (resId == R.id.btn_disableADB) {
                 mDchaService.disableADB();
@@ -138,6 +170,10 @@ public class Tester extends Activity implements View.OnClickListener {
                 changeLayout(R.layout.layout_getcanonicalexternalpath, R.id.exec_getCanonicalExternalPath);
             } else if (resId == R.id.exec_getCanonicalExternalPath) {
                 String linkPath = getBoxText(R.id.getCanonicalExternalPath_linkPath);
+                if (linkPath.isEmpty()) {
+                    makeText("パスを入力してください");
+                    return;
+                }
                 makeText("getCanonicalExternalPath：" + mDchaService.getCanonicalExternalPath(linkPath));
             } else if (resId == R.id.btn_getForegroundPackageName) {
                 makeText("getForegroundPackageName：" + mDchaService.getForegroundPackageName());
@@ -156,19 +192,26 @@ public class Tester extends Activity implements View.OnClickListener {
                 changeLayout(R.layout.layout_installapp, R.id.exec_installApp);
             } else if (resId == R.id.exec_installApp) {
                 String path = getBoxText(R.id.installApp_path);
-                String installFlag = getBoxText(R.id.installApp_installFlag);
-                if (installFlag.isEmpty()) installFlag = "2";
-                makeText("installApp：" + mDchaService.installApp(path, Integer.parseInt(installFlag)));
+                if (path.isEmpty()) {
+                    makeText("パスを入力してください");
+                    return;
+                }
+                int installFlag = getPullNumIndex(R.id.installApp_installFlag);
+                makeText("installApp：" + mDchaService.installApp(path, installFlag));
             } else if (resId == R.id.btn_isDeviceEncryptionEnabled) {
                 makeText("isDeviceEncryptionEnabled：" + mDchaService.isDeviceEncryptionEnabled());
             } else if (resId == R.id.btn_rebootPad) {
                 changeLayout(R.layout.layout_rebootpad, R.id.exec_rebootPad);
             } else if (resId == R.id.exec_rebootPad) {
-                String rebootMode = getBoxText(R.id.rebootPad_rebootMode);
+                int rebootMode = getPullNumIndex(R.id.rebootPad_rebootMode);
                 String srcPath = getBoxText(R.id.rebootPad_srcFile);
-                if (rebootMode.isEmpty()) rebootMode = "0";
-                if (srcPath.isEmpty()) srcPath = null;
-                mDchaService.rebootPad(Integer.parseInt(rebootMode), srcPath);
+                if (srcPath.isEmpty() && rebootMode == 2) {
+                    makeText("パスを入力してください");
+                    return;
+                } else if (rebootMode != 2) {
+                    srcPath = null;
+                }
+                mDchaService.rebootPad(rebootMode, srcPath);
             } else if (resId == R.id.btn_removeTask) {
                 changeLayout(R.layout.layout_removetask, R.id.exec_removeTask);
             } else if (resId == R.id.exec_removeTask) {
@@ -183,6 +226,10 @@ public class Tester extends Activity implements View.OnClickListener {
                 changeLayout(R.layout.layout_setdefaultpreferredhomeapp, R.id.exec_setDefaultPreferredHomeApp);
             } else if (resId == R.id.exec_setDefaultPreferredHomeApp) {
                 String packageName = getBoxText(R.id.setDefaultPreferredHomeApp_packageName);
+                if (packageName.isEmpty()) {
+                    makeText("パッケージ名を入力してください");
+                    return;
+                }
                 mDchaService.setDefaultPreferredHomeApp(packageName);
             } else if (resId == R.id.btn_setPermissionEnforced) {
                 changeLayout(R.layout.layout_setpermissionenforced, R.id.setPermissionEnforced_true);
@@ -208,27 +255,59 @@ public class Tester extends Activity implements View.OnClickListener {
                 changeLayout(R.layout.layout_setsystemtime, R.id.exec_setSystemTime);
             } else if (resId == R.id.exec_setSystemTime) {
                 String time = getBoxText(R.id.setSystemTime_time);
+                if (time.isEmpty()) {
+                    makeText("時刻を入力してください");
+                    return;
+                }
                 String timeFormat = getBoxText(R.id.setSystemTime_timeFormat);
+                if (timeFormat.isEmpty()) {
+                    makeText("時刻フォーマットを入力してください");
+                    return;
+                }
                 mDchaService.setSystemTime(time, timeFormat);
             } else if (resId == R.id.btn_uninstallApp) {
                 changeLayout(R.layout.layout_uninstallapp, R.id.exec_uninstallApp);
             } else if (resId == R.id.exec_uninstallApp) {
                 String packageName = getBoxText(R.id.uninstallApp_packageName);
-                String uninstallFlag = getBoxText(R.id.uninstallApp_uninstallFlag);
-                if (uninstallFlag.isEmpty()) uninstallFlag = "1";
-                makeText("uninstallApp：" + mDchaService.uninstallApp(packageName, Integer.parseInt(uninstallFlag)));
+                if (packageName.isEmpty()) {
+                    makeText("パッケージ名を入力してください");
+                    return;
+                }
+                int uninstallFlag = getPullNumIndex(R.id.uninstallApp_uninstallFlag);
+                makeText("uninstallApp：" + mDchaService.uninstallApp(packageName, uninstallFlag));
             } else if (resId == R.id.btn_verifyUpdateImage) {
                 changeLayout(R.layout.layout_verifyupdateimage, R.id.exec_verifyUpdateImage);
             } else if (resId == R.id.exec_verifyUpdateImage) {
                 String updateFile = getBoxText(R.id.verifyUpdateImage_updateFile);
+                if (updateFile.isEmpty()) {
+                    makeText("パスを入力してください");
+                    return;
+                }
                 makeText("verifyUpdateImage：" + mDchaService.verifyUpdateImage(updateFile));
+            } else if (resId == R.id.btn_EmergencyLog) {
+                changeLayout(R.layout.layout_emergencylog, R.id.exec_EmergencyLog);
+            } else if (resId == R.id.exec_EmergencyLog) {
+                String LOG_KIND = getBoxText(R.id.EmergencyLog_EXTRA_LOG_KIND);
+                String LOG_DATE = getBoxText(R.id.EmergencyLog_EXTRA_LOG_DATE);
+                String LOG_MESSAGE = getBoxText(R.id.EmergencyLog_EXTRA_LOG_MESSAGE);
+                startService(new Intent()
+                        .setClassName(DCHA_PACKAGE, DCHA_PROXY)
+                        .setAction(DCHA_PACKAGE + ".EmergencyLog")
+                        .putExtra("EXTRA_LOG_KIND", LOG_KIND)
+                        .putExtra("EXTRA_LOG_DATE", LOG_DATE)
+                        .putExtra("EXTRA_LOG_MESSAGE", LOG_MESSAGE)
+                );
+            } else if (resId == R.id.btn_UpdateTime) {
+                startService(new Intent()
+                        .setClassName(DCHA_PACKAGE, DCHA_PROXY)
+                        .setAction(DCHA_PACKAGE + ".UpdateTime")
+                );
             }
         } catch (RemoteException ignored) {
         }
     }
 
-    /** @noinspection DeprecatedIsStillUsed*/
-    @Deprecated
+    @SuppressWarnings("deprecation")
     @Override
     public void onBackPressed() {
         finish();
